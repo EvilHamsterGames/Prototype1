@@ -17,6 +17,9 @@ public class Waypoint : MonoBehaviour {
     private DIRECTION playerTrackDirection;
     private DIRECTION enemyTrackDirection;
 
+    public GameObject playerNextWaypoint;
+    public GameObject enemyNextWaypoint;
+
 	// Use this for initialization
     void Start()
     {
