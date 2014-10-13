@@ -18,7 +18,7 @@ public class Waypoint : MonoBehaviour {
     private DIRECTION enemyTrackDirection;
 
 	// Use this for initialization
-    public void Start()
+    void Start()
     {
         playerLeftWaypoint = null;
         playerRightWaypoint = null;
@@ -29,7 +29,7 @@ public class Waypoint : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-    public void Update()
+    void Update()
     {
 
 	}

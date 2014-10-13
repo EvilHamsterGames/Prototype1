@@ -27,17 +27,17 @@ public class Minion : MonoBehaviour {
 
     private MINIONTYPE type;
     private TEAM team;
-    private Waypoint origin;
-    private Waypoint destination;
+    private Vector3 origin;
+    private Vector3 destination;
     private uint hP;
     private float speed;
 
 	// Use this for initialization
 	void Start () {
-        type = MINIONTYPE.MINIONTYPE_LIGHT;
         team = TEAM.TEAM_PLAYER;
-        origin = new Waypoint();
-        destination = null;
+        type = MINIONTYPE.MINIONTYPE_LIGHT;
+        SetOrigin(GameObject.Find("Waypoint A"));
+        SetDestination(GameObject.Find("Waypoint B"));
         hP = LightMinionHP;
         speed = LightMinionSpeed;
 	}
@@ -45,92 +45,93 @@ public class Minion : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        //Debug.Log ( Mathf.Atan( 1 ) * (180 / Mathf.PI ) );
+        Move();
 
 	}
 
-    void SetType(MINIONTYPE a_type)
+    public void SetType(MINIONTYPE a_type)
     {
         type = a_type;
     }
 
-    void SetTeam(TEAM a_team)
+    public void SetTeam(TEAM a_team)
     {
         team = a_team;
     }
 
-    void SetOrigin(Waypoint a_origin)
+
+    public void SetOrigin(GameObject a_origin)
     {
-        origin = a_origin;
+        origin = a_origin.transform.position;
     }
 
-    void SetDestination(Waypoint a_destination)
+    public void SetDestination(GameObject a_destination)
     {
-        destination = a_destination;
+        destination = a_destination.transform.position;
     }
 
-    void SetHP(uint a_HP)
+    public void SetHP(uint a_HP)
     {
         hP = a_HP;
     }
 
-    void SetSpeed(float a_speed)
+    public void SetSpeed(float a_speed)
     {
         speed = a_speed;
     }
 
-    MINIONTYPE GetType()
+    public MINIONTYPE GetType()
     {
         return type;
     }
 
-    TEAM GetTeam()
+    public TEAM GetTeam()
     {
         return team;
     }
 
-    Vector3 GetPosition()
+    public Vector3 GetPosition()
     {
         return transform.position;
     }
 
-    float GetX()
+    public float GetX()
     {
         return transform.position.x;
     }
 
-    float GetY()
+    public float GetY()
     {
         return transform.position.y;
     }
 
-    float GetZ()
+    public float GetZ()
     {
         return transform.position.z;
     }
 
-    Waypoint GetOrigin()
+    public Vector3 GetOrigin()
     {
         return origin;
     }
 
-    Waypoint GetDestination()
+    public Vector3 GetDestination()
     {
         return destination;
     }
 
-    uint GetHP()
+    public uint GetHP()
     {
         return hP;
     }
 
-    float GetSpeed()
+    public float GetSpeed()
     {
         return speed;
     }
 
     //Takes damage and returns true if still alive. False if dead.
-    bool TakeDamage(uint a_damage)
+    public bool TakeDamage(uint a_damage)
     {
         if (hP > a_damage)
         {
@@ -145,10 +146,10 @@ public class Minion : MonoBehaviour {
     }
 
     //Pathfinding
-    void Move()
+    public void Move()
     {
-        float xDiff = destination.GetX() - GetX();
-        float yDiff = destination.GetY() - GetY();
+        float xDiff = destination.x - GetX();
+        float yDiff = destination.y - GetY();
         float polarAngle = Mathf.Atan(yDiff / xDiff);
 
         transform.Translate(speed * Mathf.Cos(polarAngle), speed * Mathf.Sin(polarAngle), 0);
