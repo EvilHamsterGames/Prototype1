@@ -18,7 +18,7 @@ public class Waypoint : MonoBehaviour {
     private DIRECTION enemyTrackDirection;
 
 	// Use this for initialization
-	void Start ()
+    public void Start()
     {
         playerLeftWaypoint = null;
         playerRightWaypoint = null;
@@ -29,31 +29,32 @@ public class Waypoint : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update ()
+    public void Update()
     {
+
 	}
 
-    void SetPlayerLeftPoint(Waypoint a_playerLeftWaypoint)
+    public void SetPlayerLeftPoint(Waypoint a_playerLeftWaypoint)
     {
         playerLeftWaypoint = a_playerLeftWaypoint;
     }
 
-    void SetPlayerRightPoint(Waypoint a_playerRightWaypoint)
+    public void SetPlayerRightPoint(Waypoint a_playerRightWaypoint)
     {
         playerRightWaypoint = a_playerRightWaypoint;
     }
 
-    void SetEnemyLeftPoint(Waypoint a_enemyLeftWaypoint)
+    public void SetEnemyLeftPoint(Waypoint a_enemyLeftWaypoint)
     {
         enemyLeftWaypoint = a_enemyLeftWaypoint;
     }
 
-    void SetEnemyRightPoint(Waypoint a_enemyRightWaypoint)
+    public void SetEnemyRightPoint(Waypoint a_enemyRightWaypoint)
     {
         enemyRightWaypoint = a_enemyRightWaypoint;
     }
 
-    void TogglePlayerTrack()
+    public void TogglePlayerTrack()
     {
         if (playerTrackDirection == DIRECTION.DIRECTION_LEFT)
         {
@@ -65,7 +66,7 @@ public class Waypoint : MonoBehaviour {
         }
     }
 
-    void ToggleEnemyTrack()
+    public void ToggleEnemyTrack()
     {
         if (enemyTrackDirection == DIRECTION.DIRECTION_LEFT)
         {
@@ -77,7 +78,7 @@ public class Waypoint : MonoBehaviour {
         }
     }
 
-    Waypoint GetNextPlayerPoint()
+    public Waypoint GetNextPlayerPoint()
     {
         if (playerTrackDirection == DIRECTION.DIRECTION_LEFT)
         {
@@ -89,7 +90,7 @@ public class Waypoint : MonoBehaviour {
         }
     }
 
-    Waypoint GetNextEnemyPoint()
+    public Waypoint GetNextEnemyPoint()
     {
         if (enemyTrackDirection == DIRECTION.DIRECTION_LEFT)
         {
@@ -101,22 +102,22 @@ public class Waypoint : MonoBehaviour {
         }
     }
 
-    Vector3 GetPosition()
+    public Vector3 GetPosition()
     {
         return transform.position;
     }
 
-    float GetX()
+    public float GetX()
     {
         return transform.position.x;
     }
 
-    float getY()
+    public float GetY()
     {
         return transform.position.y;
     }
 
-    float GetZ()
+    public float GetZ()
     {
         return transform.position.z;
     }

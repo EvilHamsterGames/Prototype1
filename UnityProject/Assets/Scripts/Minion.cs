@@ -36,7 +36,7 @@ public class Minion : MonoBehaviour {
 	void Start () {
         type = MINIONTYPE.MINIONTYPE_LIGHT;
         team = TEAM.TEAM_PLAYER;
-        origin = null;
+        origin = new Waypoint();
         destination = null;
         hP = LightMinionHP;
         speed = LightMinionSpeed;
@@ -44,7 +44,9 @@ public class Minion : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+
+        //Debug.Log ( Mathf.Atan( 1 ) * (180 / Mathf.PI ) );
+
 	}
 
     void SetType(MINIONTYPE a_type)
@@ -147,7 +149,7 @@ public class Minion : MonoBehaviour {
     {
         float xDiff = destination.GetX() - GetX();
         float yDiff = destination.GetY() - GetY();
-        float polarAngle = Mathf.Atan( yDiff / xDiff );
+        float polarAngle = Mathf.Atan(yDiff / xDiff);
 
         transform.Translate(speed * Mathf.Cos(polarAngle), speed * Mathf.Sin(polarAngle), 0);
     }
