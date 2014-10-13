@@ -191,6 +191,6 @@ public class Minion : MonoBehaviour {
             }
         }
         transform.Translate(speed * Mathf.Cos(polarAngle), speed * Mathf.Sin(polarAngle), 0);
-        Debug.Log(polarAngle * 180 / Mathf.PI);
+        //Debug.Log(polarAngle * 180 / Mathf.PI);
     }
 }

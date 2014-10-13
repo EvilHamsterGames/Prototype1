@@ -35,8 +35,6 @@ public class GameManager : MonoBehaviour {
 
 		playerHP = startingHP;
 		enemyHP = startingHP;
-
-		SpawnMinion (Participants.PLAYER);
 	}
 	
 	// Update is called once per frame
@@ -55,7 +53,20 @@ public class GameManager : MonoBehaviour {
 		}
 	}
 
-	void DamageParticipant(Participants targetPlayer, int amount)
+	public int GetGold()
+	{
+		return playerGold;
+	}
+
+	public int GetHP(Participants targetPlayer)
+	{
+		if(targetPlayer == Participants.PLAYER)
+			return playerHP;
+		else
+			return enemyHP;
+	}
+
+	public void DamageParticipant(Participants targetPlayer, int amount)
 	{
 		if(targetPlayer == Participants.PLAYER)
 		{
