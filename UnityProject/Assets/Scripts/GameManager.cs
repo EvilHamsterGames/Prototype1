@@ -3,7 +3,7 @@ using System.Collections;
 
 public class GameManager : MonoBehaviour {
 
-	enum Participants
+	public enum Participants
 	{
 		PLAYER,
 		ENEMY
@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour {
 	public float goldTickTime = 3f;
 	public GameObject playerSpawn;
 	public GameObject enemySpawn;
+	public GameObject minionPrefab;
 
 	//These can't be set in editor and update throughout the game
 	private int playerGold;
@@ -34,6 +35,8 @@ public class GameManager : MonoBehaviour {
 
 		playerHP = startingHP;
 		enemyHP = startingHP;
+
+		SpawnMinion (Participants.PLAYER);
 	}
 	
 	// Update is called once per frame
@@ -78,7 +81,7 @@ public class GameManager : MonoBehaviour {
 		}
 	}
 
-	void AddGold(Participants targetPlayer, int amount)
+	public void AddGold(Participants targetPlayer, int amount)
 	{
 		if (targetPlayer == Participants.PLAYER) 
 		{
@@ -97,7 +100,7 @@ public class GameManager : MonoBehaviour {
 		} 
 	}
 	
-	void SubtractGold(Participants targetPlayer, int amount)
+	public void SubtractGold(Participants targetPlayer, int amount)
 	{
 		if (targetPlayer == Participants.PLAYER) 
 		{
@@ -116,14 +119,12 @@ public class GameManager : MonoBehaviour {
 		} 
 	}
 
-	void SpawnMinion(Participants player, GameObject minionPrefab)
+	public void SpawnMinion(Participants player)
 	{
-		//Rough idea of what we've got to do here, will need minion prefabs set up first though.
-
-		//if(player == Participants.PLAYER)
-			//Instantiate(SpawnMinion, playerSpawn.transform, Quaternion.Identity);
-		//else if(player == Participants.ENEMY)
-			//Instantiate(SpawnMinion, enemySpawn.transform, Quaternion.Identity);
+		if(player == Participants.PLAYER)
+			Instantiate(minionPrefab, playerSpawn.transform.position, Quaternion.identity);
+		else if(player == Participants.ENEMY)
+			Instantiate(minionPrefab, enemySpawn.transform.position, Quaternion.identity);
 	}
 
 	void GameOver(Participants winner)
