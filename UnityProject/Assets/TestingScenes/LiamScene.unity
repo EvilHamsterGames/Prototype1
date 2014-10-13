@@ -175,3 +175,5 @@ MonoBehaviour:
   goldCap: 1000
   goldTickAmount: 5
   goldTickTime: 3
+  playerSpawn: {fileID: 0}
+  enemySpawn: {fileID: 0}

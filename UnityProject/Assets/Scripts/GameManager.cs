@@ -16,6 +16,8 @@ public class GameManager : MonoBehaviour {
 	public int goldCap = 1000;
 	public int goldTickAmount = 5;
 	public float goldTickTime = 3f;
+	public GameObject playerSpawn;
+	public GameObject enemySpawn;
 
 	//These can't be set in editor and update throughout the game
 	private int playerGold;
@@ -112,6 +114,16 @@ public class GameManager : MonoBehaviour {
 			else
 				enemyGold -= amount;
 		} 
+	}
+
+	void SpawnMinion(Participants player, GameObject minionPrefab)
+	{
+		//Rough idea of what we've got to do here, will need minion prefabs set up first though.
+
+		//if(player == Participants.PLAYER)
+			//Instantiate(SpawnMinion, playerSpawn.transform, Quaternion.Identity);
+		//else if(player == Participants.ENEMY)
+			//Instantiate(SpawnMinion, enemySpawn.transform, Quaternion.Identity);
 	}
 
 	void GameOver(Participants winner)
