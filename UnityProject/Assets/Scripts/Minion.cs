@@ -26,8 +26,7 @@ public class Minion : MonoBehaviour {
     public const float HeavyMinionSpeed = 80;
 
     private MINIONTYPE type;
-    private TEAM team; 
-    private Vector3 position;
+    private TEAM team;
     private Waypoint origin;
     private Waypoint destination;
     private uint hP;
@@ -37,7 +36,6 @@ public class Minion : MonoBehaviour {
 	void Start () {
         type = MINIONTYPE.MINIONTYPE_LIGHT;
         team = TEAM.TEAM_PLAYER;
-        position = transform.position;
         origin = null;
         destination = null;
         hP = LightMinionHP;
@@ -57,11 +55,6 @@ public class Minion : MonoBehaviour {
     void SetTeam(TEAM a_team)
     {
         team = a_team;
-    }
-
-    void SetPosition(Vector3 a_position)
-    {
-        position = a_position;
     }
 
     void SetOrigin(Waypoint a_origin)
@@ -96,7 +89,22 @@ public class Minion : MonoBehaviour {
 
     Vector3 GetPosition()
     {
-        return position;
+        return transform.position;
+    }
+
+    float GetX()
+    {
+        return transform.position.x;
+    }
+
+    float GetY()
+    {
+        return transform.position.y;
+    }
+
+    float GetZ()
+    {
+        return transform.position.z;
     }
 
     Waypoint GetOrigin()
@@ -117,5 +125,30 @@ public class Minion : MonoBehaviour {
     float GetSpeed()
     {
         return speed;
+    }
+
+    //Takes damage and returns true if still alive. False if dead.
+    bool TakeDamage(uint a_damage)
+    {
+        if (hP > a_damage)
+        {
+            hP = hP - a_damage;
+            return true;
+        }
+        else
+        {
+            hP = 0;
+            return false;
+        }
+    }
+
+    //Pathfinding
+    void Move()
+    {
+        float xDiff = destination.GetX() - GetX();
+        float yDiff = destination.GetY() - GetY();
+        float polarAngle = Mathf.Atan( yDiff / xDiff );
+
+        transform.Translate(speed * Mathf.Cos(polarAngle), speed * Mathf.Sin(polarAngle), 0);
     }
 }

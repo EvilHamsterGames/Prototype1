@@ -184,7 +184,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: ebe274678b7e0b548a42aaec552a86c9, type: 2}
       propertyPath: m_Name
-      value: Waypoint
+      value: Waypoint B
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ebe274678b7e0b548a42aaec552a86c9, type: 2}
@@ -287,7 +287,7 @@ GameObject:
   - 65: {fileID: 1438425115}
   - 23: {fileID: 1438425114}
   m_Layer: 0
-  m_Name: Waypoint
+  m_Name: Waypoint B
   m_TagString: Waypoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -359,7 +359,7 @@ GameObject:
   - 65: {fileID: 1748462266}
   - 23: {fileID: 1748462265}
   m_Layer: 0
-  m_Name: Waypoint
+  m_Name: Waypoint A
   m_TagString: Waypoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -457,6 +457,10 @@ Prefab:
     - target: {fileID: 400000, guid: ebe274678b7e0b548a42aaec552a86c9, type: 2}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: ebe274678b7e0b548a42aaec552a86c9, type: 2}
+      propertyPath: m_Name
+      value: Waypoint A
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ebe274678b7e0b548a42aaec552a86c9, type: 2}

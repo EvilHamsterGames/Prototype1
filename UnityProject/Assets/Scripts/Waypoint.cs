@@ -10,7 +10,6 @@ public class Waypoint : MonoBehaviour {
         DIRECTION_COUNT
     };
 
-    private Vector3 position;
     private Waypoint playerLeftWaypoint;
     private Waypoint playerRightWaypoint;
     private Waypoint enemyLeftWaypoint;
@@ -21,7 +20,6 @@ public class Waypoint : MonoBehaviour {
 	// Use this for initialization
 	void Start ()
     {
-        position = transform.position;
         playerLeftWaypoint = null;
         playerRightWaypoint = null;
         enemyLeftWaypoint = null;
@@ -101,5 +99,25 @@ public class Waypoint : MonoBehaviour {
         {
             return enemyRightWaypoint;
         }
+    }
+
+    Vector3 GetPosition()
+    {
+        return transform.position;
+    }
+
+    float GetX()
+    {
+        return transform.position.x;
+    }
+
+    float getY()
+    {
+        return transform.position.y;
+    }
+
+    float GetZ()
+    {
+        return transform.position.z;
     }
 }
