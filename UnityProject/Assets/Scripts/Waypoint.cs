@@ -3,32 +3,24 @@ using System.Collections;
 
 public class Waypoint : MonoBehaviour {
 
-    enum DIRECTION
+    public enum DIRECTION
     {
         DIRECTION_LEFT,
         DIRECTION_RIGHT,
         DIRECTION_COUNT
     };
 
-    private Waypoint playerLeftWaypoint;
-    private Waypoint playerRightWaypoint;
-    private Waypoint enemyLeftWaypoint;
-    private Waypoint enemyRightWaypoint;
-    private DIRECTION playerTrackDirection;
-    private DIRECTION enemyTrackDirection;
-
-    public GameObject playerNextWaypoint;
-    public GameObject enemyNextWaypoint;
+    public GameObject playerLeftWaypoint;
+    public GameObject playerRightWaypoint;
+    public GameObject enemyLeftWaypoint;
+    public GameObject enemyRightWaypoint;
+    public DIRECTION playerTrackDirection;
+    public DIRECTION enemyTrackDirection;
 
 	// Use this for initialization
     void Start()
     {
-        playerLeftWaypoint = null;
-        playerRightWaypoint = null;
-        enemyLeftWaypoint = null;
-        enemyRightWaypoint = null;
-        playerTrackDirection = DIRECTION.DIRECTION_LEFT;
-        enemyTrackDirection = DIRECTION.DIRECTION_RIGHT;
+
 	}
 	
 	// Update is called once per frame
@@ -37,22 +29,22 @@ public class Waypoint : MonoBehaviour {
 
 	}
 
-    public void SetPlayerLeftPoint(Waypoint a_playerLeftWaypoint)
+    public void SetPlayerLeftPoint(GameObject a_playerLeftWaypoint)
     {
         playerLeftWaypoint = a_playerLeftWaypoint;
     }
 
-    public void SetPlayerRightPoint(Waypoint a_playerRightWaypoint)
+    public void SetPlayerRightPoint(GameObject a_playerRightWaypoint)
     {
         playerRightWaypoint = a_playerRightWaypoint;
     }
 
-    public void SetEnemyLeftPoint(Waypoint a_enemyLeftWaypoint)
+    public void SetEnemyLeftPoint(GameObject a_enemyLeftWaypoint)
     {
         enemyLeftWaypoint = a_enemyLeftWaypoint;
     }
 
-    public void SetEnemyRightPoint(Waypoint a_enemyRightWaypoint)
+    public void SetEnemyRightPoint(GameObject a_enemyRightWaypoint)
     {
         enemyRightWaypoint = a_enemyRightWaypoint;
     }
@@ -81,7 +73,7 @@ public class Waypoint : MonoBehaviour {
         }
     }
 
-    public Waypoint GetNextPlayerPoint()
+    public GameObject GetNextPlayerPoint()
     {
         if (playerTrackDirection == DIRECTION.DIRECTION_LEFT)
         {
@@ -93,7 +85,7 @@ public class Waypoint : MonoBehaviour {
         }
     }
 
-    public Waypoint GetNextEnemyPoint()
+    public GameObject GetNextEnemyPoint()
     {
         if (enemyTrackDirection == DIRECTION.DIRECTION_LEFT)
         {
@@ -103,25 +95,5 @@ public class Waypoint : MonoBehaviour {
         {
             return enemyRightWaypoint;
         }
-    }
-
-    public Vector3 GetPosition()
-    {
-        return transform.position;
-    }
-
-    public float GetX()
-    {
-        return transform.position.x;
-    }
-
-    public float GetY()
-    {
-        return transform.position.y;
-    }
-
-    public float GetZ()
-    {
-        return transform.position.z;
     }
 }
