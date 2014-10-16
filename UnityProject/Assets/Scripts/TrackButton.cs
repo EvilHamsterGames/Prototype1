@@ -17,9 +17,13 @@ public class TrackButton : MonoBehaviour {
 
     void OnGUI()
     {
-        if (GUI.Button(new Rect(Screen.width / 2 - 60, 40, 120, 25), "Switch Track"))
+        float width = 120;
+        float height = 25;
+
+        if (GUI.Button(new Rect(track.GetX(), track.GetY() + 40, width, height), "Switch Track"))
         {
             track.TogglePlayerTrack();
         }
+
     }
 }
