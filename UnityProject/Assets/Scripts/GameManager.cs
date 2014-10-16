@@ -132,15 +132,19 @@ public class GameManager : MonoBehaviour {
 
 	public void SpawnMinion(Participants player)
 	{
-        Minion minionSpawned;
+        GameObject go;
+        Minion spawnedMinion;
 		if(player == Participants.PLAYER)
         {
-            minionSpawned = (Minion)Instantiate(minionPrefab, playerSpawn.transform.position, Quaternion.identity);
-
-            minionSpawned.SetDestination(enemySpawn);
+            go = Instantiate(minionPrefab, playerSpawn.transform.position, Quaternion.identity) as GameObject;
+            spawnedMinion = go.GetComponent<Minion>();
+            spawnedMinion.SetDestination(playerSpawn);
         }
-		else if(player == Participants.ENEMY)
-			Instantiate(minionPrefab, enemySpawn.transform.position, Quaternion.identity);
+        else if (player == Participants.ENEMY)
+        {
+            //minionSpawned = (Minion)Instantiate(minionPrefab, enemySpawn.transform.position, Quaternion.identity);
+            //minionSpawned.SetDestination(playerSpawn);
+        }
 	}
 
 	void GameOver(Participants winner)

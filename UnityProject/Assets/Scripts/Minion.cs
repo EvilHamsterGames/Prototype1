@@ -115,13 +115,13 @@ public class Minion : MonoBehaviour {
     //Pathfinding
     public void Move()
     {
-        float degreesToRad = Mathf.PI / 180;
-        float polarAngle = 0;
-        float xDiff = destination.transform.position.x - transform.position.x;
-        float yDiff = destination.transform.position.y - transform.position.y;
-
         if (destination != null)
         {
+            float degreesToRad = Mathf.PI / 180;
+            float polarAngle = 0;
+            float xDiff = destination.transform.position.x - transform.position.x;
+            float yDiff = destination.transform.position.y - transform.position.y;
+
             if (Mathf.Sqrt(Mathf.Pow(xDiff, 2) + Mathf.Pow(yDiff, 2)) < speed)
             {
                 transform.Translate(xDiff, yDiff, 0);
