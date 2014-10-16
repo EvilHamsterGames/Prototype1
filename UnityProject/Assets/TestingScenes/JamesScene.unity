@@ -85,6 +85,7 @@ GameObject:
   - 33: {fileID: 654045702}
   - 65: {fileID: 654045701}
   - 23: {fileID: 654045700}
+  - 114: {fileID: 654045704}
   m_Layer: 0
   m_Name: Ground (Cube)
   m_TagString: Untagged
@@ -143,6 +144,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
+--- !u!114 &654045704
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 654045699}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cdc05e6bb9a6a44b9c004041d8b128f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  track: {fileID: 1748462269}
 --- !u!1 &770176411
 GameObject:
   m_ObjectHideFlags: 0
@@ -295,7 +308,7 @@ GameObject:
   - 23: {fileID: 1184697675}
   - 114: {fileID: 1184697674}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: Minion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -599,7 +612,6 @@ GameObject:
   - 65: {fileID: 1748462266}
   - 23: {fileID: 1748462265}
   - 114: {fileID: 1748462269}
-  - 114: {fileID: 1748462270}
   m_Layer: 0
   m_Name: Waypoint A
   m_TagString: Waypoint
@@ -678,18 +690,6 @@ MonoBehaviour:
   enemyRightWaypoint: {fileID: 0}
   playerTrackDirection: 0
   enemyTrackDirection: 0
---- !u!114 &1748462270
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1748462264}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5cdc05e6bb9a6a44b9c004041d8b128f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  track: {fileID: 1748462269}
 --- !u!1001 &2075705814
 Prefab:
   m_ObjectHideFlags: 0

@@ -15,15 +15,8 @@ public class TrackButton : MonoBehaviour {
 	
 	}
 
-    void OnGUI()
+    void OnMouseDown()
     {
-        float width = 120;
-        float height = 25;
-
-        if (GUI.Button(new Rect(track.GetX(), track.GetY() + 40, width, height), "Switch Track"))
-        {
-            track.TogglePlayerTrack();
-        }
-
+        track.TogglePlayerTrack();
     }
 }
