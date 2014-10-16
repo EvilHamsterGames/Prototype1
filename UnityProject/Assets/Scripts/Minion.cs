@@ -24,7 +24,7 @@ public class Minion : MonoBehaviour {
     public const float LightMinionSpeed = 0.25f;
     public const float MediumMinionSpeed = 90;
     public const float HeavyMinionSpeed = 80;
-    public GameObject destination;
+    public Waypoint destination;
 
     private MINIONTYPE type;
     private TEAM team;
@@ -35,7 +35,6 @@ public class Minion : MonoBehaviour {
 	void Start () {
         team = TEAM.TEAM_PLAYER;
         type = MINIONTYPE.MINIONTYPE_LIGHT;
-        //SetDestination(GameObject.Find("Waypoint B"));
         hP = LightMinionHP;
         speed = LightMinionSpeed;
         renderer.material.color = Color.red;
@@ -58,7 +57,7 @@ public class Minion : MonoBehaviour {
         team = a_team;
     }
 
-    public void SetDestination(GameObject a_destination)
+    public void SetDestination(Waypoint a_destination)
     {
         destination = a_destination;
     }
@@ -83,7 +82,7 @@ public class Minion : MonoBehaviour {
         return team;
     }
 
-    public GameObject GetDestination()
+    public Waypoint GetDestination()
     {
         return destination;
     }
@@ -124,6 +123,7 @@ public class Minion : MonoBehaviour {
         if (Mathf.Sqrt(Mathf.Pow(xDiff, 2) + Mathf.Pow(yDiff, 2)) < speed)
         {
             transform.Translate(xDiff, yDiff, 0);
+            destination = destination.GetNextPlayerPoint();
         }
         else
         {

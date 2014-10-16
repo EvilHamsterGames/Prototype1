@@ -10,10 +10,10 @@ public class Waypoint : MonoBehaviour {
         DIRECTION_COUNT
     };
 
-    public GameObject playerLeftWaypoint;
-    public GameObject playerRightWaypoint;
-    public GameObject enemyLeftWaypoint;
-    public GameObject enemyRightWaypoint;
+    public Waypoint playerLeftWaypoint;
+    public Waypoint playerRightWaypoint;
+    public Waypoint enemyLeftWaypoint;
+    public Waypoint enemyRightWaypoint;
     public DIRECTION playerTrackDirection;
     public DIRECTION enemyTrackDirection;
 
@@ -29,22 +29,22 @@ public class Waypoint : MonoBehaviour {
 
 	}
 
-    public void SetPlayerLeftPoint(GameObject a_playerLeftWaypoint)
+    public void SetPlayerLeftPoint(Waypoint a_playerLeftWaypoint)
     {
         playerLeftWaypoint = a_playerLeftWaypoint;
     }
 
-    public void SetPlayerRightPoint(GameObject a_playerRightWaypoint)
+    public void SetPlayerRightPoint(Waypoint a_playerRightWaypoint)
     {
         playerRightWaypoint = a_playerRightWaypoint;
     }
 
-    public void SetEnemyLeftPoint(GameObject a_enemyLeftWaypoint)
+    public void SetEnemyLeftPoint(Waypoint a_enemyLeftWaypoint)
     {
         enemyLeftWaypoint = a_enemyLeftWaypoint;
     }
 
-    public void SetEnemyRightPoint(GameObject a_enemyRightWaypoint)
+    public void SetEnemyRightPoint(Waypoint a_enemyRightWaypoint)
     {
         enemyRightWaypoint = a_enemyRightWaypoint;
     }
@@ -73,7 +73,7 @@ public class Waypoint : MonoBehaviour {
         }
     }
 
-    public GameObject GetNextPlayerPoint()
+    public Waypoint GetNextPlayerPoint()
     {
         if (playerTrackDirection == DIRECTION.DIRECTION_LEFT)
         {
@@ -85,7 +85,7 @@ public class Waypoint : MonoBehaviour {
         }
     }
 
-    public GameObject GetNextEnemyPoint()
+    public Waypoint GetNextEnemyPoint()
     {
         if (enemyTrackDirection == DIRECTION.DIRECTION_LEFT)
         {
