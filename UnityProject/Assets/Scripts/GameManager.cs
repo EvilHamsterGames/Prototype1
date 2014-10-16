@@ -132,7 +132,9 @@ public class GameManager : MonoBehaviour {
 
 	public void SpawnMinion(Participants player)
 	{
+        //Storing the spawned minions game object
         GameObject go;
+
         Minion spawnedMinion;
 		if(player == Participants.PLAYER)
         {
@@ -142,8 +144,9 @@ public class GameManager : MonoBehaviour {
         }
         else if (player == Participants.ENEMY)
         {
-            //minionSpawned = (Minion)Instantiate(minionPrefab, enemySpawn.transform.position, Quaternion.identity);
-            //minionSpawned.SetDestination(playerSpawn);
+            go = Instantiate(minionPrefab, enemySpawn.transform.position, Quaternion.identity) as GameObject;
+            spawnedMinion = go.GetComponent<Minion>();
+            spawnedMinion.SetDestination(playerSpawn);
         }
 	}
 
