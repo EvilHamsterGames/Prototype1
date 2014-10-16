@@ -96,4 +96,24 @@ public class Waypoint : MonoBehaviour {
             return enemyRightWaypoint;
         }
     }
+
+    public Vector3 GetPosition()
+    {
+        return transform.position;
+    }
+
+    public float GetX()
+    {
+        return transform.position.x;
+    }
+
+    public float GetY()
+    {
+        return transform.position.y;
+    }
+
+    public float GetZ()
+    {
+        return transform.position.z;
+    }
 }

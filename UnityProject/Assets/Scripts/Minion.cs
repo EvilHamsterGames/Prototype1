@@ -21,9 +21,9 @@ public class Minion : MonoBehaviour {
     public const uint LightMinionHP = 1;
     public const uint MediumMinionHP = 2;
     public const uint HeavyMinionHP = 3;
-    public const float LightMinionSpeed = 0.25f;
-    public const float MediumMinionSpeed = 90;
-    public const float HeavyMinionSpeed = 80;
+    public const float LightMinionSpeed = 50;
+    public const float MediumMinionSpeed = 45;
+    public const float HeavyMinionSpeed = 40;
     public Waypoint destination;
 
     private MINIONTYPE type;
@@ -115,54 +115,72 @@ public class Minion : MonoBehaviour {
     //Pathfinding
     public void Move()
     {
-        if (destination != null)
-        {
-            float degreesToRad = Mathf.PI / 180;
-            float polarAngle = 0;
-            float xDiff = destination.transform.position.x - transform.position.x;
-            float yDiff = destination.transform.position.y - transform.position.y;
+        float degreesToRad = Mathf.PI / 180;
+        float polarAngle = 0;
+        float xDiff = destination.GetX() - GetX();
+        float yDiff = destination.GetY() - GetY();
 
-            if (Mathf.Sqrt(Mathf.Pow(xDiff, 2) + Mathf.Pow(yDiff, 2)) < speed)
+        if (Mathf.Sqrt(Mathf.Pow(xDiff, 2) + Mathf.Pow(yDiff, 2)) < speed * Time.deltaTime)
+        {
+            transform.Translate(xDiff, yDiff, 0);
+            destination = destination.GetNextPlayerPoint();
+        }
+        else
+        {
+            if (destination.GetX() > GetX())
             {
-                transform.Translate(xDiff, yDiff, 0);
-                destination = destination.GetNextPlayerPoint();
-            }
-            else
-            {
-                if (destination.transform.position.x > transform.position.x)
+                if (destination.GetY() >= GetY())
                 {
-                    if (destination.transform.position.y >= transform.position.y)
-                    {
-                        //First quadrant or boundary of first and fourth quadrants
-                        polarAngle = Mathf.Atan((destination.transform.position.y - transform.position.y) / (destination.transform.position.x - transform.position.x));
-                    }
-                    else
-                    {
-                        //Fourth quadrant
-                        polarAngle = (360 * degreesToRad) + (Mathf.Atan((destination.transform.position.y - transform.position.y) / (destination.transform.position.x - transform.position.x)));
-                    }
-                }
-                else if (destination.transform.position.x < transform.position.x)
-                {
-                    //Second or third quadrant or boundary of second and third quadrants
-                    polarAngle = (180 * degreesToRad) + (Mathf.Atan((destination.transform.position.y - transform.position.y) / (destination.transform.position.x - transform.position.x)));
+                    //First quadrant or boundary of first and fourth quadrants
+                    polarAngle = Mathf.Atan(yDiff / xDiff);
                 }
                 else
                 {
-                    if (destination.transform.position.y > transform.position.y)
-                    {
-                        //Boundary of first and second quadrants
-                        polarAngle = (90 * degreesToRad);
-                    }
-                    else if (destination.transform.position.y < transform.position.y)
-                    {
-                        //Boundary of third and fourth quadrants
-                        polarAngle = (270 * degreesToRad);
-                    }
+                    //Fourth quadrant
+                    polarAngle = (360 * degreesToRad) + Mathf.Atan(yDiff / xDiff);
                 }
-                transform.Translate(speed * Mathf.Cos(polarAngle), speed * Mathf.Sin(polarAngle), 0);
-                //Debug.Log(polarAngle * 180 / Mathf.PI);
             }
+            else if (destination.GetX() < GetX())
+            {
+                //Second or third quadrant or boundary of second and third quadrants
+                polarAngle = (180 * degreesToRad) + Mathf.Atan(yDiff / xDiff);
+            }
+            else
+            {
+                if (destination.GetY() > GetY())
+                {
+                    //Boundary of first and second quadrants
+                    polarAngle = (90 * degreesToRad);
+                }
+                else if (destination.GetY() < GetY())
+                {
+                    //Boundary of third and fourth quadrants
+                    polarAngle = (270 * degreesToRad);
+                }
+            }
+            float xMovement = speed * Mathf.Cos(polarAngle) * Time.deltaTime;
+            float yMovement = speed * Mathf.Sin(polarAngle) * Time.deltaTime;
+            transform.Translate(xMovement, yMovement, 0);
         }
+    }
+
+    public Vector3 GetPosition()
+    {
+        return transform.position;
+    }
+
+    public float GetX()
+    {
+        return transform.position.x;
+    }
+
+    public float GetY()
+    {
+        return transform.position.y;
+    }
+
+    public float GetZ()
+    {
+        return transform.position.z;
     }
 }
