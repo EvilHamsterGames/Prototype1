@@ -16,8 +16,8 @@ public class GameManager : MonoBehaviour {
 	public int goldCap = 1000;
 	public int goldTickAmount = 5;
 	public float goldTickTime = 3f;
-	public GameObject playerSpawn;
-	public GameObject enemySpawn;
+	public Waypoint playerSpawn;
+	public Waypoint enemySpawn;
 	public GameObject minionPrefab;
 
 	//These can't be set in editor and update throughout the game
@@ -132,8 +132,13 @@ public class GameManager : MonoBehaviour {
 
 	public void SpawnMinion(Participants player)
 	{
+        Minion minionSpawned;
 		if(player == Participants.PLAYER)
-			Instantiate(minionPrefab, playerSpawn.transform.position, Quaternion.identity);
+        {
+            minionSpawned = (Minion)Instantiate(minionPrefab, playerSpawn.transform.position, Quaternion.identity);
+
+            minionSpawned.SetDestination(enemySpawn);
+        }
 		else if(player == Participants.ENEMY)
 			Instantiate(minionPrefab, enemySpawn.transform.position, Quaternion.identity);
 	}
