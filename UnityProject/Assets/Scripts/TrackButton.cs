@@ -17,6 +17,14 @@ public class TrackButton : MonoBehaviour {
 
     void OnMouseDown()
     {
+        if (track.playerTrackDirection == Waypoint.DIRECTION.DIRECTION_LEFT)
+        {
+            transform.Rotate(Time.deltaTime, 0, 90);
+        }
+        else
+        {
+            transform.Rotate(Time.deltaTime, 0, -90);
+        }
         track.TogglePlayerTrack();
     }
 }
