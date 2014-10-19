@@ -9,7 +9,6 @@ public class UserInterface : MonoBehaviour {
 	void Start () 
 	{
 		manager = this.GetComponent ("GameManager") as GameManager;
-		manager.SpawnMinion (GameManager.Participants.PLAYER);
 	}
 	
 	// Update is called once per frame
