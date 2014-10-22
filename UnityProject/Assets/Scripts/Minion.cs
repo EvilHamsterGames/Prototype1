@@ -197,8 +197,17 @@ public class Minion : MonoBehaviour {
                     break;
             }
             //Add change in polar angle moving along circular path
+            //James just making a bugfix here to get the game running
+            //You can't modify the components of a transform position directly it seems instead
+            //you have to copy it to a temp Vector2, make your changes and then copy it back in.
+            //I've modified the code here which should work, we'll discuss it further at tommorows meeting :P
+            Vector3 temp;
+            temp = transform.position;
+
             polarAngle = polarAngle + (speed * Time.deltaTime / radius);
-            transform.position.x = radius * Mathf.Cos(polarAngle);
+            temp.x = radius * Mathf.Cos(polarAngle);
+
+            transform.position = temp;
         }
     }
 
