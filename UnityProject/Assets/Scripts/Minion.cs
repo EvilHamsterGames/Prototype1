@@ -26,6 +26,7 @@ public class Minion : MonoBehaviour {
     public const float HeavyMinionSpeed = 40;
     public Waypoint destination;
     public Vector3 circleCentre;
+    public bool circularMovement;
 
     private MINIONTYPE type;
     private TEAM team;
@@ -116,24 +117,29 @@ public class Minion : MonoBehaviour {
     uint GetQuadrant(float a_x, float a_y)
     {
         //First quadrant
-        if ((a_x >= 0) && (a_y >= 0))
+        if ((a_x > 0) && (a_y > 0))
         {
             return 1;
         }
         //Second quadrant
-        else if ((a_x <= 0) && (a_y >= 0))
+        else if ((a_x < 0) && (a_y > 0))
         {
             return 2;
         }
         //Third quadrant
-        else if ((a_x <= 0) && (a_y <= 0))
+        else if ((a_x < 0) && (a_y < 0))
         {
             return 3;
         }
         //Fourth quadrant
-        else
+        else if ((a_x > 0) && (a_y < 0))
         {
             return 4;
+        }
+        //Between two quadrants
+        else
+        {
+            return 5;
         }
     }
 
@@ -151,63 +157,126 @@ public class Minion : MonoBehaviour {
             transform.Translate(xDiff, yDiff, 0);
             destination = destination.GetNextPlayerPoint();
         }
-        //Move in direct line towards destination
-        else if (circleCentre == null)
-        {
-            switch (GetQuadrant(xDiff, yDiff))
+        else {
+            if (circularMovement == false)
             {
-                case 1:
-                    polarAngle = Mathf.Atan(yDiff / xDiff);
-                    break;
-                case 2:
-                    polarAngle = (180 * degreesToRad) + Mathf.Atan(yDiff / xDiff);
-                    break;
-                case 3:
-                    polarAngle = (180 * degreesToRad) + Mathf.Atan(yDiff / xDiff);
-                    break;
-                default:
-                    polarAngle = (360 * degreesToRad) + Mathf.Atan(yDiff / xDiff);
-                    break;
+                //Move in direct line towards destination
+                switch (GetQuadrant(xDiff, yDiff))
+                {
+                    case 1:
+                        polarAngle = Mathf.Atan(yDiff / xDiff);
+                        break;
+                    case 2:
+                        polarAngle = (180 * degreesToRad) + Mathf.Atan(yDiff / xDiff);
+                        break;
+                    case 3:
+                        polarAngle = (180 * degreesToRad) + Mathf.Atan(yDiff / xDiff);
+                        break;
+                    case 4:
+                        polarAngle = (360 * degreesToRad) + Mathf.Atan(yDiff / xDiff);
+                        break;
+                    default:
+                        if (xDiff == 0)
+                        {
+                            if (yDiff > 0)
+                            {
+                                polarAngle = 90 * degreesToRad;
+                            }
+                            else if (yDiff < 0)
+                            {
+                                polarAngle = 270 * degreesToRad;
+                            }
+                            else
+                            {
+                                //Target is at object's current location
+                                polarAngle = -1;
+                            }
+                        }
+                        else if (yDiff == 0)
+                        {
+                            if (xDiff > 0)
+                            {
+                                polarAngle = 0;
+                            }
+                            else
+                            {
+                                polarAngle = 180 * degreesToRad;
+                            }
+                        }
+                        break;
+                }
+                if (polarAngle != -1)
+                {
+                    float xMovement = speed * Mathf.Cos(polarAngle) * Time.deltaTime;
+                    float yMovement = speed * Mathf.Sin(polarAngle) * Time.deltaTime;
+                    transform.Translate(xMovement, yMovement, 0);
+                }
             }
-            float xMovement = speed * Mathf.Cos(polarAngle) * Time.deltaTime;
-            float yMovement = speed * Mathf.Sin(polarAngle) * Time.deltaTime;
-            transform.Translate(xMovement, yMovement, 0);
-        }
-        //Move toward destination along circular curve
-        else
-        {
-            xDiff = GetX() - circleCentre.x;
-            yDiff = GetY() - circleCentre.y;
-            float radius = Mathf.Sqrt(Mathf.Pow(xDiff, 2) + Mathf.Pow(yDiff, 2));
-
-            //Calculate current polar angle
-            switch (GetQuadrant(xDiff, yDiff))
+            else
             {
-                case 1:
-                    polarAngle = Mathf.Atan(yDiff / xDiff);
-                    break;
-                case 2:
-                    polarAngle = (180 * degreesToRad) + Mathf.Atan(yDiff / xDiff);
-                    break;
-                case 3:
-                    polarAngle = (180 * degreesToRad) + Mathf.Atan(yDiff / xDiff);
-                    break;
-                default:
-                    polarAngle = (360 * degreesToRad) + Mathf.Atan(yDiff / xDiff);
-                    break;
+                //Move toward destination along circular curve
+                xDiff = GetX() - circleCentre.x;
+                yDiff = GetY() - circleCentre.y;
+                float radius = Mathf.Sqrt(Mathf.Pow(xDiff, 2) + Mathf.Pow(yDiff, 2));
+
+                //Calculate current polar angle
+                switch (GetQuadrant(xDiff, yDiff))
+                {
+                    case 1:
+                        polarAngle = Mathf.Atan(yDiff / xDiff);
+                        break;
+                    case 2:
+                        polarAngle = (180 * degreesToRad) + Mathf.Atan(yDiff / xDiff);
+                        break;
+                    case 3:
+                        polarAngle = (180 * degreesToRad) + Mathf.Atan(yDiff / xDiff);
+                        break;
+                    case 4:
+                        polarAngle = (360 * degreesToRad) + Mathf.Atan(yDiff / xDiff);
+                        break;
+                    default:
+                        if (xDiff == 0)
+                        {
+                            if (yDiff > 0)
+                            {
+                                polarAngle = 90 * degreesToRad;
+                            }
+                            else if (yDiff < 0)
+                            {
+                                polarAngle = 270 * degreesToRad;
+                            }
+                            else
+                            {
+                                //Target is at object's current location
+                                polarAngle = -1;
+                            }
+                        }
+                        else if (yDiff == 0)
+                        {
+                            if (xDiff > 0)
+                            {
+                                polarAngle = 0;
+                            }
+                            else
+                            {
+                                polarAngle = 180 * degreesToRad;
+                            }
+                        }
+                        break;
+                }
+                //Add change in polar angle moving along circular path
+                //James just making a bugfix here to get the game running
+                //You can't modify the components of a transform position directly it seems instead
+                //you have to copy it to a temp Vector2, make your changes and then copy it back in.
+                //I've modified the code here which should work, we'll discuss it further at tommorows meeting :P
+                Vector3 temp;
+                temp = transform.position;
+
+                polarAngle = polarAngle + (speed * Time.deltaTime / radius);
+                temp.x = circleCentre.x + (radius * Mathf.Cos(polarAngle));
+                temp.y = circleCentre.y + (radius * Mathf.Sin(polarAngle));
+                transform.position = temp;
             }
-            //Add change in polar angle moving along circular path
-            //James just making a bugfix here to get the game running
-            //You can't modify the components of a transform position directly it seems instead
-            //you have to copy it to a temp Vector2, make your changes and then copy it back in.
-            //I've modified the code here which should work, we'll discuss it further at tommorows meeting :P
-            Vector3 temp;
-            temp = transform.position;
-
-            polarAngle = polarAngle + (speed * Time.deltaTime / radius);
-            temp.x = radius * Mathf.Cos(polarAngle);
-
-            transform.position = temp;
         }
     }
 
