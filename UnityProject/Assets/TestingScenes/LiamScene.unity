@@ -120,7 +120,7 @@ Prefab:
     - target: {fileID: 11400000, guid: ebe274678b7e0b548a42aaec552a86c9, type: 2}
       propertyPath: playerLeftWaypoint
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1443010617}
     - target: {fileID: 11400000, guid: ebe274678b7e0b548a42aaec552a86c9, type: 2}
       propertyPath: playerRightWaypoint
       value: 
@@ -142,6 +142,7 @@ GameObject:
   - 92: {fileID: 557649763}
   - 124: {fileID: 557649762}
   - 81: {fileID: 557649761}
+  - 114: {fileID: 557649766}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -214,6 +215,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!114 &557649766
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 557649760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 340d218695f39d24cbf7d271ba17460c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &847519715
 GameObject:
   m_ObjectHideFlags: 0
@@ -245,7 +257,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16bd0c0f52b7f7848b9dbc4fdfe1e5b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerLeftWaypoint: {fileID: 0}
+  playerLeftWaypoint: {fileID: 1443010617}
   playerRightWaypoint: {fileID: 0}
   enemyLeftWaypoint: {fileID: 0}
   enemyRightWaypoint: {fileID: 0}

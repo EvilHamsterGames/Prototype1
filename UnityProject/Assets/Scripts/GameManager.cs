@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class GameManager : MonoBehaviour {
 
@@ -21,6 +22,9 @@ public class GameManager : MonoBehaviour {
 	public GameObject minionPrefab;
 
 	//These can't be set in editor and update throughout the game
+    //List for each sides minions, could squish this into a single list if we tag them on creation
+    List<Minion> playerMinions;
+    List<Minion> enemyMinions;
 	private int playerGold;
 	private int enemyGold;
 	private int playerHP;
@@ -141,12 +145,14 @@ public class GameManager : MonoBehaviour {
             go = Instantiate(minionPrefab, playerSpawn.transform.position, Quaternion.identity) as GameObject;
             spawnedMinion = go.GetComponent<Minion>();
             spawnedMinion.SetDestination(playerSpawn);
+            playerMinions.Add(spawnedMinion);
         }
         else if (player == Participants.ENEMY)
         {
             go = Instantiate(minionPrefab, enemySpawn.transform.position, Quaternion.identity) as GameObject;
             spawnedMinion = go.GetComponent<Minion>();
             spawnedMinion.SetDestination(playerSpawn);
+            enemyMinions.Add(spawnedMinion);
         }
 	}
 
