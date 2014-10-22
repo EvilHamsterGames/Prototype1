@@ -17,5 +17,5 @@ function OnMouseExit() {
 
 function OnMouseDown() {
 
-	Application.LoadLevel("Main_Menu");
+	Application.LoadLevel("MainMenu");
 }
