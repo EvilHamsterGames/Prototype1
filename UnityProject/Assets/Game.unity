@@ -86,6 +86,7 @@ GameObject:
   - 92: {fileID: 37824305}
   - 124: {fileID: 37824304}
   - 81: {fileID: 37824303}
+  - 114: {fileID: 37824308}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -133,7 +134,7 @@ Camera:
   near clip plane: .300000012
   far clip plane: 1000
   field of view: 60
-  orthographic: 1
+  orthographic: 0
   orthographic size: 10
   m_Depth: -1
   m_CullingMask:
@@ -158,6 +159,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!114 &37824308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 37824302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 340d218695f39d24cbf7d271ba17460c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  edgeDistance: 5
+  panSpeed: .300000012
 --- !u!1001 &198692938
 Prefab:
   m_ObjectHideFlags: 0
@@ -625,6 +639,7 @@ GameObject:
   - 4: {fileID: 740473532}
   - 114: {fileID: 740473531}
   - 114: {fileID: 740473530}
+  - 114: {fileID: 740473533}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -661,6 +676,9 @@ MonoBehaviour:
   goldCap: 1000
   goldTickAmount: 5
   goldTickTime: 3
+  lightMinionCost: 3
+  mediumMinionCost: 7
+  heavyMinionCost: 15
   playerSpawn: {fileID: 0}
   enemySpawn: {fileID: 0}
   minionPrefab: {fileID: 100000, guid: 80220ea3f259970498aefce7d87dbd2a, type: 2}
@@ -676,6 +694,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
+--- !u!114 &740473533
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400004, guid: 77557373f6204b34fabb65a9573812bb,
+    type: 2}
+  m_PrefabInternal: {fileID: 355239541}
+  m_GameObject: {fileID: 740473529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a629306f44d03c1449d08ae1940c96eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tickTime: 2
+  randomSeed: 255
 --- !u!1 &1004006155
 GameObject:
   m_ObjectHideFlags: 0
