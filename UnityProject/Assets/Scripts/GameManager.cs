@@ -14,17 +14,20 @@ public class GameManager : MonoBehaviour {
 	//These can be set from the unity editor for easy access
 	public int startingHP = 100;
 	public int startingGold = 100;
+
 	public int goldCap = 1000;
 	public int goldTickAmount = 5;
-	public float goldTickTime = 3f;
+    public float goldTickTime = 3f;
+
+    public int lightMinionCost = 3;
+    public int mediumMinionCost = 7;
+    public int heavyMinionCost = 15;
+
 	public Waypoint playerSpawn;
 	public Waypoint enemySpawn;
 	public GameObject minionPrefab;
 
 	//These can't be set in editor and update throughout the game
-    //List for each sides minions, could squish this into a single list if we tag them on creation
-    List<Minion> playerMinions;
-    List<Minion> enemyMinions;
 	private int playerGold;
 	private int enemyGold;
 	private int playerHP;
@@ -134,25 +137,96 @@ public class GameManager : MonoBehaviour {
 		} 
 	}
 
-	public void SpawnMinion(Participants player)
+	public void SpawnMinion(Participants player, Minion.MINIONTYPE type)
 	{
         //Storing the spawned minions game object
         GameObject go;
-
         Minion spawnedMinion;
+
 		if(player == Participants.PLAYER)
         {
+
+            //Gold check
+            if(type == Minion.MINIONTYPE.MINIONTYPE_LIGHT)
+            {
+                if (lightMinionCost > playerGold)
+                    return;
+            }
+            else if(type == Minion.MINIONTYPE.MINIONTYPE_MEDIUM)
+            {
+                if (mediumMinionCost > playerGold)
+                    return;
+            }
+            else if (type == Minion.MINIONTYPE.MINIONTYPE_HEAVY)
+            {
+                if (heavyMinionCost > playerGold)
+                    return;
+            }
+
             go = Instantiate(minionPrefab, playerSpawn.transform.position, Quaternion.identity) as GameObject;
             spawnedMinion = go.GetComponent<Minion>();
             spawnedMinion.SetDestination(playerSpawn);
-            playerMinions.Add(spawnedMinion);
+
+            if(type == Minion.MINIONTYPE.MINIONTYPE_LIGHT)
+            {
+                SubtractGold(Participants.PLAYER, lightMinionCost);
+                spawnedMinion.SetHP(Minion.LightMinionHP);
+                spawnedMinion.SetSpeed(Minion.LightMinionSpeed);
+            }
+            else if(type == Minion.MINIONTYPE.MINIONTYPE_MEDIUM)
+            {
+                SubtractGold(Participants.PLAYER, mediumMinionCost);
+                spawnedMinion.SetHP(Minion.MediumMinionHP);
+                spawnedMinion.SetSpeed(Minion.MediumMinionSpeed);
+            }
+            else if(type == Minion.MINIONTYPE.MINIONTYPE_HEAVY)
+            {
+                SubtractGold(Participants.PLAYER, heavyMinionCost);
+                spawnedMinion.SetHP(Minion.HeavyMinionHP);
+                spawnedMinion.SetSpeed(Minion.HeavyMinionSpeed);
+            }
         }
         else if (player == Participants.ENEMY)
         {
+            //Gold check
+            if (type == Minion.MINIONTYPE.MINIONTYPE_LIGHT)
+            {
+                if (lightMinionCost > enemyGold)
+                    return;
+            }
+            else if (type == Minion.MINIONTYPE.MINIONTYPE_MEDIUM)
+            {
+                if (mediumMinionCost > enemyGold)
+                    return;
+            }
+            else if (type == Minion.MINIONTYPE.MINIONTYPE_HEAVY)
+            {
+                if (heavyMinionCost > enemyGold)
+                    return;
+            }
+
             go = Instantiate(minionPrefab, enemySpawn.transform.position, Quaternion.identity) as GameObject;
             spawnedMinion = go.GetComponent<Minion>();
             spawnedMinion.SetDestination(playerSpawn);
-            enemyMinions.Add(spawnedMinion);
+
+            if (type == Minion.MINIONTYPE.MINIONTYPE_LIGHT)
+            {
+                SubtractGold(Participants.ENEMY, lightMinionCost);
+                spawnedMinion.SetHP(Minion.LightMinionHP);
+                spawnedMinion.SetSpeed(Minion.LightMinionSpeed);
+            }
+            else if (type == Minion.MINIONTYPE.MINIONTYPE_MEDIUM)
+            {
+                SubtractGold(Participants.ENEMY, mediumMinionCost);
+                spawnedMinion.SetHP(Minion.MediumMinionHP);
+                spawnedMinion.SetSpeed(Minion.MediumMinionSpeed);
+            }
+            else if (type == Minion.MINIONTYPE.MINIONTYPE_HEAVY)
+            {
+                SubtractGold(Participants.ENEMY, heavyMinionCost);
+                spawnedMinion.SetHP(Minion.HeavyMinionHP);
+                spawnedMinion.SetSpeed(Minion.HeavyMinionSpeed);
+            }
         }
 	}
 
