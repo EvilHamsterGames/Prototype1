@@ -18,24 +18,17 @@ public class Minion : MonoBehaviour {
         TEAM_COUNT
     };
 
-    public enum MOVEMENT_TYPE
-    {
-        MOVEMENT_TYPE_LINEAR,
-        MOVEMENT_TYPE_CLOCKWISE,
-        MOVEMENT_TYPE_ANTICLOCKWISE,
-        MOVEMENT_TYPE_COUNT
-    };
-
-    public const uint LightMinionHP = 1;
-    public const uint MediumMinionHP = 2;
-    public const uint HeavyMinionHP = 3;
-    public const float LightMinionSpeed = 50;
-    public const float MediumMinionSpeed = 45;
-    public const float HeavyMinionSpeed = 40;
+    public const uint lightMinionHP = 1;
+    public const uint mediumMinionHP = 2;
+    public const uint heavyMinionHP = 3;
+    public const float lightMinionSpeed = 3;
+    public const float mediumMinionSpeed = 2;
+    public const float heavyMinionSpeed = 1;
     public Waypoint destination;
     
     private Vector3 circleCentre;
-    private MOVEMENT_TYPE movementType;
+    private Waypoint.CURVE_TYPE curveType;
+    private Waypoint.CURVE_DIRECTION curveDirection;
     private MINIONTYPE type;
     private TEAM team;
     private uint hP;
@@ -45,8 +38,8 @@ public class Minion : MonoBehaviour {
 	void Start () {
         team = TEAM.TEAM_PLAYER;
         type = MINIONTYPE.MINIONTYPE_LIGHT;
-        hP = LightMinionHP;
-        speed = LightMinionSpeed;
+        hP = lightMinionHP;
+        speed = lightMinionSpeed;
         renderer.material.color = Color.red;
 	}
 	
@@ -165,25 +158,28 @@ public class Minion : MonoBehaviour {
             transform.Translate(xDiff, yDiff, 0);
             if (team == TEAM.TEAM_PLAYER)
             {
-                destination = destination.GetNextPlayerPoint();
-                movementType = destination.GetNextPlayerMovementType();
-                if (movementType != MOVEMENT_TYPE.MOVEMENT_TYPE_LINEAR)
+                curveDirection = destination.GetNextPlayerCurveDirection();
+                curveType = destination.GetNextPlayerCurveType();
+                if (curveType != Waypoint.CURVE_TYPE.CURVE_TYPE_LINEAR)
                 {
                     circleCentre = destination.GetNextPlayerCircleCentre();
                 }
+                destination = destination.GetNextPlayerPoint();
             }
             else
             {
-                destination = destination.GetNextEnemyPoint();
-                movementType = destination.GetNextEnemyMovementType();
-                if (movementType != MOVEMENT_TYPE.MOVEMENT_TYPE_LINEAR)
+                curveDirection = destination.GetNextEnemyCurveDirection();
+                curveType = destination.GetNextEnemyCurveType();
+                if (curveType != Waypoint.CURVE_TYPE.CURVE_TYPE_LINEAR)
                 {
                     circleCentre = destination.GetNextEnemyCircleCentre();
                 }
+                destination = destination.GetNextEnemyPoint();
             }
         }
-        else {
-            if (movementType == MOVEMENT_TYPE.MOVEMENT_TYPE_LINEAR)
+        else
+        {
+            if (curveType == Waypoint.CURVE_TYPE.CURVE_TYPE_LINEAR)
             {
                 //Move in direct line towards destination
                 switch (GetQuadrant(xDiff, yDiff))
@@ -298,7 +294,7 @@ public class Minion : MonoBehaviour {
                 temp = transform.position;
 
                 //Clockwise rotation
-                if (movementType == MOVEMENT_TYPE.MOVEMENT_TYPE_CLOCKWISE)
+                if (curveDirection == Waypoint.CURVE_DIRECTION.CURVE_DIRECTION_CLOCKWISE)
                 {
                     polarAngle = polarAngle - (speed * Time.deltaTime / radius);
                 }

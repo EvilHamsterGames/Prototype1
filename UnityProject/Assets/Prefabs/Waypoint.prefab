@@ -82,9 +82,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerLeftWaypoint: {fileID: 0}
+  playerLeftCurveType: 0
+  playerLeftCurveDirection: 0
+  playerLeftRadius: 0
   playerRightWaypoint: {fileID: 0}
+  playerRightCurveType: 0
+  playerRightCurveDirection: 0
+  playerRightRadius: 0
   enemyLeftWaypoint: {fileID: 0}
+  enemyLeftCurveType: 0
+  enemyLeftCurveDirection: 0
+  enemyLeftRadius: 0
   enemyRightWaypoint: {fileID: 0}
+  enemyRightCurveType: 0
+  enemyRightCurveDirection: 0
+  enemyRightRadius: 0
   playerTrackDirection: 0
   enemyTrackDirection: 0
 --- !u!1001 &100100000

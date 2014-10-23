@@ -456,7 +456,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerLeftWaypoint: {fileID: 1748462269}
-  playerLeftWaypointMovementType: 2
+  playerLeftWaypointMovementType: 1
   playerLeftCirleCentre: {x: 0, y: 0, z: 0}
   playerRightWaypoint: {fileID: 0}
   playerRightWaypointMovementType: 0
