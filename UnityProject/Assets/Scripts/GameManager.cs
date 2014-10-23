@@ -170,20 +170,20 @@ public class GameManager : MonoBehaviour {
             if(type == Minion.MINIONTYPE.MINIONTYPE_LIGHT)
             {
                 SubtractGold(Participants.PLAYER, lightMinionCost);
-                spawnedMinion.SetHP(Minion.LightMinionHP);
-                spawnedMinion.SetSpeed(Minion.LightMinionSpeed);
+                spawnedMinion.SetHP(Minion.lightMinionHP);
+                spawnedMinion.SetSpeed(Minion.lightMinionSpeed);
             }
             else if(type == Minion.MINIONTYPE.MINIONTYPE_MEDIUM)
             {
                 SubtractGold(Participants.PLAYER, mediumMinionCost);
-                spawnedMinion.SetHP(Minion.MediumMinionHP);
-                spawnedMinion.SetSpeed(Minion.MediumMinionSpeed);
+                spawnedMinion.SetHP(Minion.mediumMinionHP);
+                spawnedMinion.SetSpeed(Minion.mediumMinionSpeed);
             }
             else if(type == Minion.MINIONTYPE.MINIONTYPE_HEAVY)
             {
                 SubtractGold(Participants.PLAYER, heavyMinionCost);
-                spawnedMinion.SetHP(Minion.HeavyMinionHP);
-                spawnedMinion.SetSpeed(Minion.HeavyMinionSpeed);
+                spawnedMinion.SetHP(Minion.heavyMinionHP);
+                spawnedMinion.SetSpeed(Minion.heavyMinionSpeed);
             }
         }
         else if (player == Participants.ENEMY)
@@ -212,20 +212,20 @@ public class GameManager : MonoBehaviour {
             if (type == Minion.MINIONTYPE.MINIONTYPE_LIGHT)
             {
                 SubtractGold(Participants.ENEMY, lightMinionCost);
-                spawnedMinion.SetHP(Minion.LightMinionHP);
-                spawnedMinion.SetSpeed(Minion.LightMinionSpeed);
+                spawnedMinion.SetHP(Minion.lightMinionHP);
+                spawnedMinion.SetSpeed(Minion.lightMinionSpeed);
             }
             else if (type == Minion.MINIONTYPE.MINIONTYPE_MEDIUM)
             {
                 SubtractGold(Participants.ENEMY, mediumMinionCost);
-                spawnedMinion.SetHP(Minion.MediumMinionHP);
-                spawnedMinion.SetSpeed(Minion.MediumMinionSpeed);
+                spawnedMinion.SetHP(Minion.mediumMinionHP);
+                spawnedMinion.SetSpeed(Minion.mediumMinionSpeed);
             }
             else if (type == Minion.MINIONTYPE.MINIONTYPE_HEAVY)
             {
                 SubtractGold(Participants.ENEMY, heavyMinionCost);
-                spawnedMinion.SetHP(Minion.HeavyMinionHP);
-                spawnedMinion.SetSpeed(Minion.HeavyMinionSpeed);
+                spawnedMinion.SetHP(Minion.heavyMinionHP);
+                spawnedMinion.SetSpeed(Minion.heavyMinionSpeed);
             }
         }
 	}
