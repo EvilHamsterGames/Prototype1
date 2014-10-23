@@ -18,6 +18,14 @@ public class Minion : MonoBehaviour {
         TEAM_COUNT
     };
 
+    public enum MOVEMENT_TYPE
+    {
+        MOVEMENT_TYPE_LINEAR,
+        MOVEMENT_TYPE_CLOCKWISE,
+        MOVEMENT_TYPE_ANTICLOCKWISE,
+        MOVEMENT_TYPE_COUNT
+    };
+
     public const uint LightMinionHP = 1;
     public const uint MediumMinionHP = 2;
     public const uint HeavyMinionHP = 3;
@@ -25,9 +33,9 @@ public class Minion : MonoBehaviour {
     public const float MediumMinionSpeed = 45;
     public const float HeavyMinionSpeed = 40;
     public Waypoint destination;
-    public Vector3 circleCentre;
-    public bool circularMovement;
-
+    
+    private Vector3 circleCentre;
+    private MOVEMENT_TYPE movementType;
     private MINIONTYPE type;
     private TEAM team;
     private uint hP;
@@ -155,10 +163,27 @@ public class Minion : MonoBehaviour {
         if (Mathf.Sqrt(Mathf.Pow(xDiff, 2) + Mathf.Pow(yDiff, 2)) < speed * Time.deltaTime)
         {
             transform.Translate(xDiff, yDiff, 0);
-            destination = destination.GetNextPlayerPoint();
+            if (team == TEAM.TEAM_PLAYER)
+            {
+                destination = destination.GetNextPlayerPoint();
+                movementType = destination.GetNextPlayerMovementType();
+                if (movementType != MOVEMENT_TYPE.MOVEMENT_TYPE_LINEAR)
+                {
+                    circleCentre = destination.GetNextPlayerCircleCentre();
+                }
+            }
+            else
+            {
+                destination = destination.GetNextEnemyPoint();
+                movementType = destination.GetNextEnemyMovementType();
+                if (movementType != MOVEMENT_TYPE.MOVEMENT_TYPE_LINEAR)
+                {
+                    circleCentre = destination.GetNextEnemyCircleCentre();
+                }
+            }
         }
         else {
-            if (circularMovement == false)
+            if (movementType == MOVEMENT_TYPE.MOVEMENT_TYPE_LINEAR)
             {
                 //Move in direct line towards destination
                 switch (GetQuadrant(xDiff, yDiff))
@@ -272,7 +297,16 @@ public class Minion : MonoBehaviour {
                 Vector3 temp;
                 temp = transform.position;
 
-                polarAngle = polarAngle + (speed * Time.deltaTime / radius);
+                //Clockwise rotation
+                if (movementType == MOVEMENT_TYPE.MOVEMENT_TYPE_CLOCKWISE)
+                {
+                    polarAngle = polarAngle - (speed * Time.deltaTime / radius);
+                }
+                //Anticlockwise rotation
+                else
+                {
+                    polarAngle = polarAngle + (speed * Time.deltaTime / radius);
+                }
                 temp.x = circleCentre.x + (radius * Mathf.Cos(polarAngle));
                 temp.y = circleCentre.y + (radius * Mathf.Sin(polarAngle));
                 transform.position = temp;

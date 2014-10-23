@@ -165,11 +165,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400000, guid: ebe274678b7e0b548a42aaec552a86c9, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ebe274678b7e0b548a42aaec552a86c9, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 30
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ebe274678b7e0b548a42aaec552a86c9, type: 2}
       propertyPath: m_LocalPosition.z
@@ -236,8 +236,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destination: {fileID: 1438425118}
-  circleCentre: {x: 0, y: 0, z: 0}
-  circularMovement: 1
 --- !u!23 &1184697675
 Renderer:
   m_ObjectHideFlags: 0
@@ -441,7 +439,7 @@ Transform:
   m_PrefabInternal: {fileID: 1154252398}
   m_GameObject: {fileID: 1438425113}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 30, z: -1}
+  m_LocalPosition: {x: 30, y: 0, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -458,9 +456,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerLeftWaypoint: {fileID: 1748462269}
+  playerLeftWaypointMovementType: 2
+  playerLeftCirleCentre: {x: 0, y: 0, z: 0}
   playerRightWaypoint: {fileID: 0}
+  playerRightWaypointMovementType: 0
+  playerRightCirleCentre: {x: 0, y: 0, z: 0}
   enemyLeftWaypoint: {fileID: 0}
+  enemyLeftWaypointMovementType: 0
+  enemyLeftCirleCentre: {x: 0, y: 0, z: 0}
   enemyRightWaypoint: {fileID: 0}
+  enemyRightWaypointMovementType: 0
+  enemyRightCirleCentre: {x: 0, y: 0, z: 0}
   playerTrackDirection: 0
   enemyTrackDirection: 0
 --- !u!1 &1748462264
@@ -548,9 +554,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerLeftWaypoint: {fileID: 1438425118}
+  playerLeftWaypointMovementType: 0
+  playerLeftCirleCentre: {x: 0, y: 0, z: 0}
   playerRightWaypoint: {fileID: 0}
+  playerRightWaypointMovementType: 0
+  playerRightCirleCentre: {x: 0, y: 0, z: 0}
   enemyLeftWaypoint: {fileID: 0}
+  enemyLeftWaypointMovementType: 0
+  enemyLeftCirleCentre: {x: 0, y: 0, z: 0}
   enemyRightWaypoint: {fileID: 0}
+  enemyRightWaypointMovementType: 0
+  enemyRightCirleCentre: {x: 0, y: 0, z: 0}
   playerTrackDirection: 0
   enemyTrackDirection: 0
 --- !u!1001 &2075705814
