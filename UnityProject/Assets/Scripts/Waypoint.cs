@@ -11,9 +11,21 @@ public class Waypoint : MonoBehaviour {
     };
 
     public Waypoint playerLeftWaypoint;
+    public Minion.MOVEMENT_TYPE playerLeftWaypointMovementType;
+    public Vector3 playerLeftCirleCentre;
+
     public Waypoint playerRightWaypoint;
+    public Minion.MOVEMENT_TYPE playerRightWaypointMovementType;
+    public Vector3 playerRightCirleCentre;
+
     public Waypoint enemyLeftWaypoint;
+    public Minion.MOVEMENT_TYPE enemyLeftWaypointMovementType;
+    public Vector3 enemyLeftCirleCentre;
+
     public Waypoint enemyRightWaypoint;
+    public Minion.MOVEMENT_TYPE enemyRightWaypointMovementType;
+    public Vector3 enemyRightCirleCentre;
+
     public DIRECTION playerTrackDirection;
     public DIRECTION enemyTrackDirection;
 
@@ -28,26 +40,6 @@ public class Waypoint : MonoBehaviour {
     {
 
 	}
-
-    public void SetPlayerLeftPoint(Waypoint a_playerLeftWaypoint)
-    {
-        playerLeftWaypoint = a_playerLeftWaypoint;
-    }
-
-    public void SetPlayerRightPoint(Waypoint a_playerRightWaypoint)
-    {
-        playerRightWaypoint = a_playerRightWaypoint;
-    }
-
-    public void SetEnemyLeftPoint(Waypoint a_enemyLeftWaypoint)
-    {
-        enemyLeftWaypoint = a_enemyLeftWaypoint;
-    }
-
-    public void SetEnemyRightPoint(Waypoint a_enemyRightWaypoint)
-    {
-        enemyRightWaypoint = a_enemyRightWaypoint;
-    }
 
     public void TogglePlayerTrack()
     {
@@ -94,6 +86,54 @@ public class Waypoint : MonoBehaviour {
         else
         {
             return enemyRightWaypoint;
+        }
+    }
+
+    public Minion.MOVEMENT_TYPE GetNextPlayerMovementType()
+    {
+        if (playerTrackDirection == DIRECTION.DIRECTION_LEFT)
+        {
+            return playerLeftWaypointMovementType;
+        }
+        else
+        {
+            return playerRightWaypointMovementType;
+        }
+    }
+
+    public Minion.MOVEMENT_TYPE GetNextEnemyMovementType()
+    {
+        if (enemyTrackDirection == DIRECTION.DIRECTION_LEFT)
+        {
+            return enemyLeftWaypointMovementType;
+        }
+        else
+        {
+            return enemyRightWaypointMovementType;
+        }
+    }
+
+    public Vector3 GetNextPlayerCircleCentre()
+    {
+        if (playerTrackDirection == DIRECTION.DIRECTION_LEFT)
+        {
+            return playerLeftCirleCentre;
+        }
+        else
+        {
+            return playerRightCirleCentre;
+        }
+    }
+
+    public Vector3 GetNextEnemyCircleCentre()
+    {
+        if (enemyTrackDirection == DIRECTION.DIRECTION_LEFT)
+        {
+            return enemyLeftCirleCentre;
+        }
+        else
+        {
+            return enemyRightCirleCentre;
         }
     }
 
