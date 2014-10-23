@@ -11,16 +11,6 @@ public class GameSettings : MonoBehaviour {
 
     private static Mode currentMode;
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
-
     public static void SetMode(Mode newMode)
     {
         currentMode = newMode;
