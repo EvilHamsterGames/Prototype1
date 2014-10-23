@@ -10,6 +10,7 @@ GameObject:
   - 4: {fileID: 400000}
   - 114: {fileID: 11400000}
   - 114: {fileID: 11400002}
+  - 114: {fileID: 11400004}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -45,6 +46,9 @@ MonoBehaviour:
   goldCap: 1000
   goldTickAmount: 5
   goldTickTime: 3
+  lightMinionCost: 3
+  mediumMinionCost: 7
+  heavyMinionCost: 15
   playerSpawn: {fileID: 0}
   enemySpawn: {fileID: 0}
   minionPrefab: {fileID: 100000, guid: 80220ea3f259970498aefce7d87dbd2a, type: 2}
@@ -59,6 +63,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64bdff6828a24e542a7153e0df5e6925, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &11400004
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a629306f44d03c1449d08ae1940c96eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tickTime: 2
+  randomSeed: 255
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
