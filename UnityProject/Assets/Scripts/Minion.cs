@@ -36,10 +36,6 @@ public class Minion : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        team = TEAM.TEAM_PLAYER;
-        type = MINIONTYPE.MINIONTYPE_LIGHT;
-        hP = lightMinionHP;
-        speed = lightMinionSpeed;
         renderer.material.color = Color.red;
 	}
 	
@@ -49,6 +45,24 @@ public class Minion : MonoBehaviour {
         Move();
 
 	}
+
+    //Runs when minion collides with another object
+    void OnTriggerEnter(Collider a_object)
+    {
+        Minion other = a_object.GetComponent<Minion>();
+        if (other.GetTeam() != GetTeam())
+        {
+            uint opponentHP = other.GetHP();
+            uint myHP = GetHP();
+            other.TakeDamage(myHP);
+            TakeDamage(opponentHP);
+        }
+    }
+
+    void Display()
+    {
+
+    }
 
     public void SetType(MINIONTYPE a_type)
     {
@@ -111,6 +125,7 @@ public class Minion : MonoBehaviour {
         else
         {
             hP = 0;
+            Destroy(gameObject);
             return false;
         }
     }
