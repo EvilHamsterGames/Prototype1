@@ -3,7 +3,8 @@ using System.Collections;
 
 public class TrackButton : MonoBehaviour {
 
-    public Waypoint track;
+    public Minion.TEAM owner;
+    public Waypoint waypoint;
 
 	// Use this for initialization
 	void Start () {
@@ -17,14 +18,29 @@ public class TrackButton : MonoBehaviour {
 
     void OnMouseDown()
     {
-        if (track.playerTrackDirection == Waypoint.DIRECTION.DIRECTION_LEFT)
+        if (owner == Minion.TEAM.TEAM_PLAYER)
         {
-            transform.Rotate(Time.deltaTime, 0, 90);
+            if (waypoint.playerTrackDirection == Waypoint.DIRECTION.DIRECTION_LEFT)
+            {
+                transform.Rotate(0, 0, 90);
+            }
+            else
+            {
+                transform.Rotate(0, 0, -90);
+            }
+            waypoint.TogglePlayerTrack();
         }
         else
         {
-            transform.Rotate(Time.deltaTime, 0, -90);
+            if (waypoint.enemyTrackDirection == Waypoint.DIRECTION.DIRECTION_LEFT)
+            {
+                transform.Rotate(Time.deltaTime, 0, -90);
+            }
+            else
+            {
+                transform.Rotate(Time.deltaTime, 0, 90);
+            }
+            waypoint.ToggleEnemyTrack();
         }
-        track.TogglePlayerTrack();
     }
 }
