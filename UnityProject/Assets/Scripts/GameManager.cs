@@ -172,18 +172,24 @@ public class GameManager : MonoBehaviour {
                 SubtractGold(Participants.PLAYER, lightMinionCost);
                 spawnedMinion.SetHP(Minion.lightMinionHP);
                 spawnedMinion.SetSpeed(Minion.lightMinionSpeed);
+                spawnedMinion.SetTeam(Minion.TEAM.TEAM_PLAYER);
+                spawnedMinion.SetType(Minion.MINIONTYPE.MINIONTYPE_LIGHT);
             }
             else if(type == Minion.MINIONTYPE.MINIONTYPE_MEDIUM)
             {
                 SubtractGold(Participants.PLAYER, mediumMinionCost);
                 spawnedMinion.SetHP(Minion.mediumMinionHP);
                 spawnedMinion.SetSpeed(Minion.mediumMinionSpeed);
+                spawnedMinion.SetTeam(Minion.TEAM.TEAM_PLAYER);
+                spawnedMinion.SetType(Minion.MINIONTYPE.MINIONTYPE_MEDIUM);
             }
             else if(type == Minion.MINIONTYPE.MINIONTYPE_HEAVY)
             {
                 SubtractGold(Participants.PLAYER, heavyMinionCost);
                 spawnedMinion.SetHP(Minion.heavyMinionHP);
                 spawnedMinion.SetSpeed(Minion.heavyMinionSpeed);
+                spawnedMinion.SetTeam(Minion.TEAM.TEAM_PLAYER);
+                spawnedMinion.SetType(Minion.MINIONTYPE.MINIONTYPE_HEAVY);
             }
         }
         else if (player == Participants.ENEMY)
@@ -214,18 +220,24 @@ public class GameManager : MonoBehaviour {
                 SubtractGold(Participants.ENEMY, lightMinionCost);
                 spawnedMinion.SetHP(Minion.lightMinionHP);
                 spawnedMinion.SetSpeed(Minion.lightMinionSpeed);
+                spawnedMinion.SetTeam(Minion.TEAM.TEAM_ENEMY);
+                spawnedMinion.SetType(Minion.MINIONTYPE.MINIONTYPE_LIGHT);
             }
             else if (type == Minion.MINIONTYPE.MINIONTYPE_MEDIUM)
             {
                 SubtractGold(Participants.ENEMY, mediumMinionCost);
                 spawnedMinion.SetHP(Minion.mediumMinionHP);
                 spawnedMinion.SetSpeed(Minion.mediumMinionSpeed);
+                spawnedMinion.SetTeam(Minion.TEAM.TEAM_ENEMY);
+                spawnedMinion.SetType(Minion.MINIONTYPE.MINIONTYPE_MEDIUM);
             }
             else if (type == Minion.MINIONTYPE.MINIONTYPE_HEAVY)
             {
                 SubtractGold(Participants.ENEMY, heavyMinionCost);
                 spawnedMinion.SetHP(Minion.heavyMinionHP);
                 spawnedMinion.SetSpeed(Minion.heavyMinionSpeed);
+                spawnedMinion.SetTeam(Minion.TEAM.TEAM_ENEMY);
+                spawnedMinion.SetType(Minion.MINIONTYPE.MINIONTYPE_HEAVY);
             }
         }
 	}

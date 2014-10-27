@@ -279,7 +279,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   edgeDistance: 50
-  panSpeed: 3
+  panSpeed: .100000001
 --- !u!1 &847519715
 GameObject:
   m_ObjectHideFlags: 0

@@ -120,12 +120,14 @@ public class Minion : MonoBehaviour {
         if (hP > a_damage)
         {
             hP = hP - a_damage;
+            Debug.Log("A minion was damaged");
             return true;
         }
         else
         {
             hP = 0;
             Destroy(gameObject);
+            Debug.Log("A minion was killed");
             return false;
         }
     }
