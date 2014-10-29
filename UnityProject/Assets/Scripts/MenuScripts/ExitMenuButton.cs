@@ -3,12 +3,14 @@ using System.Collections;
 
 public class ExitMenuButton : MonoBehaviour {
 
+	public AudioClip sound;
 	public GUITexture image;
     public Texture2D Button;
     public Texture2D Button_Down;
 
     public void OnMouseEnter() {
 
+		audio.PlayOneShot(sound);
     	image.texture = Button_Down;
 
     }
