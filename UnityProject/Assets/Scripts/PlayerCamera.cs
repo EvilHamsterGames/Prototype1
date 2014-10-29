@@ -5,6 +5,11 @@ public class PlayerCamera : MonoBehaviour {
 
     public float edgeDistance = 50.0f;
     public float panSpeed = 0.3f;
+
+    public float camZoomMax = -5.0f;
+    public float camZoomMin = 0.0f;
+    public float camZoomSpeed = 0.3f;
+
     private Vector3 tempPos;
 
 	// Use this for initialization
@@ -31,7 +36,14 @@ public class PlayerCamera : MonoBehaviour {
             tempPos += new Vector3(0, 1 * panSpeed, 0);
 
         //Maybe adding zoom functionality here
-
+        if (Input.GetAxis("Mouse ScrollWheel") < 0)
+        {
+            tempPos += new Vector3(0, 0, -1 * camZoomSpeed);
+        }
+        else if (Input.GetAxis("Mouse ScrollWheel") > 0)
+        {
+            tempPos += new Vector3(0, 0, 1 * camZoomSpeed);
+        }
         transform.position = tempPos;
 	}
 }

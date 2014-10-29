@@ -173,6 +173,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   edgeDistance: 5
   panSpeed: .300000012
+  camZoomMax: 0
+  camZoomMin: 5
+  camZoomSpeed: .5
 --- !u!82 &37824309
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3205,7 +3208,7 @@ Prefab:
     - target: {fileID: 11400000, guid: ebe274678b7e0b548a42aaec552a86c9, type: 2}
       propertyPath: enemyLeftWaypoint
       value: 
-      objectReference: {fileID: 1004006156}
+      objectReference: {fileID: 819548098}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ebe274678b7e0b548a42aaec552a86c9, type: 2}
   m_RootGameObject: {fileID: 1649862506}
@@ -3417,7 +3420,7 @@ MonoBehaviour:
   playerRightCurveType: 0
   playerRightCurveDirection: 0
   playerRightRadius: 0
-  enemyLeftWaypoint: {fileID: 1004006156}
+  enemyLeftWaypoint: {fileID: 819548098}
   enemyLeftCurveType: 0
   enemyLeftCurveDirection: 0
   enemyLeftRadius: 0
