@@ -1106,6 +1106,22 @@ Prefab:
       propertyPath: enemySpawn
       value: 
       objectReference: {fileID: 1649862507}
+    - target: {fileID: 11400004, guid: 77557373f6204b34fabb65a9573812bb, type: 2}
+      propertyPath: switchOne
+      value: 
+      objectReference: {fileID: 819548098}
+    - target: {fileID: 11400004, guid: 77557373f6204b34fabb65a9573812bb, type: 2}
+      propertyPath: switchtwo
+      value: 
+      objectReference: {fileID: 215187166}
+    - target: {fileID: 11400004, guid: 77557373f6204b34fabb65a9573812bb, type: 2}
+      propertyPath: switchThree
+      value: 
+      objectReference: {fileID: 1205006277}
+    - target: {fileID: 11400004, guid: 77557373f6204b34fabb65a9573812bb, type: 2}
+      propertyPath: switchTwo
+      value: 
+      objectReference: {fileID: 215187166}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 77557373f6204b34fabb65a9573812bb, type: 2}
   m_RootGameObject: {fileID: 740473529}
@@ -1736,6 +1752,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tickTime: 2
   randomSeed: 255
+  switchOne: {fileID: 819548098}
+  switchTwo: {fileID: 215187166}
+  switchThree: {fileID: 1205006277}
 --- !u!1 &819548097
 GameObject:
   m_ObjectHideFlags: 0

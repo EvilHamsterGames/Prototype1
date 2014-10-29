@@ -9,8 +9,13 @@ public class AI : MonoBehaviour {
     public float tickTime = 5.0f;
     public int randomSeed = 255;
 
+    public Waypoint switchOne;
+    public Waypoint switchTwo;
+    public Waypoint switchThree;
+
     //Variable that stores random number dictating AI's choices
-    private int decision;
+    private int spawnChoice;
+    private int trackChoice;
 
 	// Use this for initialization
 	void Start () 
@@ -23,12 +28,13 @@ public class AI : MonoBehaviour {
 	void Update () 
     {
         timer += Time.deltaTime;
-        decision = Random.Range(-1, 4);
+        spawnChoice = Random.Range(0, 3);
+        trackChoice = Random.Range(0, 2);
 
         if (timer < tickTime)
             return;
 
-        switch (decision)
+        switch (spawnChoice)
         {
             case 0:
                 manager.SpawnMinion(GameManager.Participants.ENEMY, Minion.MINIONTYPE.MINIONTYPE_LIGHT);
@@ -45,6 +51,19 @@ public class AI : MonoBehaviour {
             case 3:
                 Debug.Log("AI did nothing this tick");
                 timer = 0.0f;
+                break;
+        }
+
+        switch (trackChoice)
+        {
+            case 0:
+                switchOne.ToggleEnemyTrack();
+                break;
+            case 1:
+                switchTwo.ToggleEnemyTrack();
+                break;
+            case 2:
+                switchThree.ToggleEnemyTrack();
                 break;
         }
 
