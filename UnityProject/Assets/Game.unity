@@ -130,7 +130,7 @@ Renderer:
     type: 2}
   m_PrefabInternal: {fileID: 1224093386}
   m_GameObject: {fileID: 5385596}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_LightmapIndex: 255
@@ -233,7 +233,7 @@ Renderer:
     type: 2}
   m_PrefabInternal: {fileID: 1191745978}
   m_GameObject: {fileID: 23874435}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_LightmapIndex: 255
@@ -496,7 +496,7 @@ Renderer:
     type: 2}
   m_PrefabInternal: {fileID: 1327856777}
   m_GameObject: {fileID: 71166764}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_LightmapIndex: 255
@@ -599,7 +599,7 @@ Renderer:
     type: 2}
   m_PrefabInternal: {fileID: 302989524}
   m_GameObject: {fileID: 95246883}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_LightmapIndex: 255
@@ -832,7 +832,7 @@ Renderer:
     type: 2}
   m_PrefabInternal: {fileID: 1837140123}
   m_GameObject: {fileID: 196099662}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_LightmapIndex: 255
@@ -1392,7 +1392,7 @@ Prefab:
     - target: {fileID: 11400004, guid: 77557373f6204b34fabb65a9573812bb, type: 2}
       propertyPath: switchOne
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1880913425}
     - target: {fileID: 11400004, guid: 77557373f6204b34fabb65a9573812bb, type: 2}
       propertyPath: switchtwo
       value: 
@@ -1400,11 +1400,11 @@ Prefab:
     - target: {fileID: 11400004, guid: 77557373f6204b34fabb65a9573812bb, type: 2}
       propertyPath: switchThree
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1201181424}
     - target: {fileID: 11400004, guid: 77557373f6204b34fabb65a9573812bb, type: 2}
       propertyPath: switchTwo
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1352904635}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 77557373f6204b34fabb65a9573812bb, type: 2}
   m_RootGameObject: {fileID: 740473529}
@@ -1466,7 +1466,7 @@ Renderer:
     type: 2}
   m_PrefabInternal: {fileID: 1861226218}
   m_GameObject: {fileID: 388752346}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_LightmapIndex: 255
@@ -1569,7 +1569,7 @@ Renderer:
     type: 2}
   m_PrefabInternal: {fileID: 1909802096}
   m_GameObject: {fileID: 405058165}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_LightmapIndex: 255
@@ -1672,7 +1672,7 @@ Renderer:
     type: 2}
   m_PrefabInternal: {fileID: 1588826387}
   m_GameObject: {fileID: 406221302}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_LightmapIndex: 255
@@ -2087,7 +2087,7 @@ Renderer:
     type: 2}
   m_PrefabInternal: {fileID: 494166936}
   m_GameObject: {fileID: 547338588}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_LightmapIndex: 255
@@ -2270,7 +2270,7 @@ Renderer:
     type: 2}
   m_PrefabInternal: {fileID: 1453232445}
   m_GameObject: {fileID: 601436604}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_LightmapIndex: 255
@@ -2373,7 +2373,7 @@ Renderer:
     type: 2}
   m_PrefabInternal: {fileID: 198692938}
   m_GameObject: {fileID: 641955059}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_LightmapIndex: 255
@@ -2587,9 +2587,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tickTime: 2
   randomSeed: 255
-  switchOne: {fileID: 0}
-  switchTwo: {fileID: 0}
-  switchThree: {fileID: 0}
+  switchOne: {fileID: 1880913425}
+  switchTwo: {fileID: 1352904635}
+  switchThree: {fileID: 1201181424}
 --- !u!1001 &774676911
 Prefab:
   m_ObjectHideFlags: 0
@@ -2778,7 +2778,7 @@ Renderer:
     type: 2}
   m_PrefabInternal: {fileID: 682100447}
   m_GameObject: {fileID: 821520535}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_LightmapIndex: 255
@@ -3101,7 +3101,7 @@ Renderer:
     type: 2}
   m_PrefabInternal: {fileID: 579205414}
   m_GameObject: {fileID: 889024926}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_LightmapIndex: 255
@@ -3204,7 +3204,7 @@ Renderer:
     type: 2}
   m_PrefabInternal: {fileID: 1391929655}
   m_GameObject: {fileID: 894278557}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_LightmapIndex: 255
@@ -3307,7 +3307,7 @@ Renderer:
     type: 2}
   m_PrefabInternal: {fileID: 1974366492}
   m_GameObject: {fileID: 907431670}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_LightmapIndex: 255
@@ -3410,7 +3410,7 @@ Renderer:
     type: 2}
   m_PrefabInternal: {fileID: 1875193094}
   m_GameObject: {fileID: 940032388}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_LightmapIndex: 255
@@ -3513,7 +3513,7 @@ Renderer:
     type: 2}
   m_PrefabInternal: {fileID: 1829426578}
   m_GameObject: {fileID: 988027660}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_LightmapIndex: 255
@@ -3696,7 +3696,7 @@ Renderer:
     type: 2}
   m_PrefabInternal: {fileID: 992268960}
   m_GameObject: {fileID: 1037042239}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_LightmapIndex: 255
@@ -3799,7 +3799,7 @@ Renderer:
     type: 2}
   m_PrefabInternal: {fileID: 1285272090}
   m_GameObject: {fileID: 1041965541}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_LightmapIndex: 255
@@ -3902,7 +3902,7 @@ Renderer:
     type: 2}
   m_PrefabInternal: {fileID: 1961441269}
   m_GameObject: {fileID: 1060798613}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_LightmapIndex: 255
@@ -4362,7 +4362,7 @@ Renderer:
     type: 2}
   m_PrefabInternal: {fileID: 1602517450}
   m_GameObject: {fileID: 1201181423}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_LightmapIndex: 255
@@ -4946,7 +4946,7 @@ Renderer:
     type: 2}
   m_PrefabInternal: {fileID: 1844153857}
   m_GameObject: {fileID: 1352904634}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_LightmapIndex: 255
@@ -5049,7 +5049,7 @@ Renderer:
     type: 2}
   m_PrefabInternal: {fileID: 1616476753}
   m_GameObject: {fileID: 1361248487}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_LightmapIndex: 255
@@ -5152,7 +5152,7 @@ Renderer:
     type: 2}
   m_PrefabInternal: {fileID: 162251349}
   m_GameObject: {fileID: 1369949651}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_LightmapIndex: 255
@@ -5476,7 +5476,7 @@ Renderer:
     type: 2}
   m_PrefabInternal: {fileID: 1605809966}
   m_GameObject: {fileID: 1415021796}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_LightmapIndex: 255
@@ -5579,7 +5579,7 @@ Renderer:
     type: 2}
   m_PrefabInternal: {fileID: 1695853464}
   m_GameObject: {fileID: 1441205700}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_LightmapIndex: 255
@@ -5770,7 +5770,7 @@ Renderer:
     type: 2}
   m_PrefabInternal: {fileID: 1072227017}
   m_GameObject: {fileID: 1457075472}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_LightmapIndex: 255
@@ -5873,7 +5873,7 @@ Renderer:
     type: 2}
   m_PrefabInternal: {fileID: 855416858}
   m_GameObject: {fileID: 1550164801}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_LightmapIndex: 255
@@ -6120,7 +6120,7 @@ Renderer:
     type: 2}
   m_PrefabInternal: {fileID: 491751069}
   m_GameObject: {fileID: 1596478941}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_LightmapIndex: 255
@@ -6331,7 +6331,7 @@ Renderer:
     type: 2}
   m_PrefabInternal: {fileID: 1296374132}
   m_GameObject: {fileID: 1603222429}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_LightmapIndex: 255
@@ -6694,7 +6694,7 @@ Renderer:
     type: 2}
   m_PrefabInternal: {fileID: 1569177527}
   m_GameObject: {fileID: 1649862506}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_LightmapIndex: 255
@@ -6797,7 +6797,7 @@ Renderer:
     type: 2}
   m_PrefabInternal: {fileID: 774676911}
   m_GameObject: {fileID: 1655868279}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_LightmapIndex: 255
@@ -7012,7 +7012,7 @@ Renderer:
     type: 2}
   m_PrefabInternal: {fileID: 1194931180}
   m_GameObject: {fileID: 1790590000}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_LightmapIndex: 255
@@ -7333,7 +7333,7 @@ Renderer:
     type: 2}
   m_PrefabInternal: {fileID: 882697957}
   m_GameObject: {fileID: 1843614477}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_LightmapIndex: 255
@@ -7704,7 +7704,7 @@ Renderer:
     type: 2}
   m_PrefabInternal: {fileID: 447088622}
   m_GameObject: {fileID: 1880913424}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_LightmapIndex: 255
@@ -7807,7 +7807,7 @@ Renderer:
     type: 2}
   m_PrefabInternal: {fileID: 1649297987}
   m_GameObject: {fileID: 1904300630}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_LightmapIndex: 255
@@ -7990,7 +7990,7 @@ Renderer:
     type: 2}
   m_PrefabInternal: {fileID: 344668813}
   m_GameObject: {fileID: 1929982555}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_LightmapIndex: 255
