@@ -18,7 +18,10 @@ public class TrackButton : MonoBehaviour {
 
     void OnMouseDown()
     {
-        ActivateTrackButton();
+        if (owner == Minion.TEAM.TEAM_PLAYER)
+        {
+            ActivateTrackButton();
+        }
     }
 
     void ActivateTrackButton() {
