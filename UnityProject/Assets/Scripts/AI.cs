@@ -13,6 +13,10 @@ public class AI : MonoBehaviour {
     public Waypoint switchTwo;
     public Waypoint switchThree;
 
+    public TrackButton buttonOne;
+    public TrackButton buttonTwo;
+    public TrackButton buttonThree;
+
     //Variable that stores random number dictating AI's choices
     private int spawnChoice;
     private int trackChoice;
@@ -57,13 +61,13 @@ public class AI : MonoBehaviour {
         switch (trackChoice)
         {
             case 0:
-                switchOne.ToggleEnemyTrack();
+                buttonOne.ActivateTrackButton();
                 break;
             case 1:
-                switchTwo.ToggleEnemyTrack();
+                buttonTwo.ActivateTrackButton();
                 break;
             case 2:
-                switchThree.ToggleEnemyTrack();
+                buttonThree.ActivateTrackButton();
                 break;
         }
 

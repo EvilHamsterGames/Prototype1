@@ -24,7 +24,7 @@ public class TrackButton : MonoBehaviour {
         }
     }
 
-    void ActivateTrackButton() {
+    public void ActivateTrackButton() {
         if (owner == Minion.TEAM.TEAM_PLAYER)
         {
             if (waypoint.playerTrackDirection == Waypoint.DIRECTION.DIRECTION_LEFT)
