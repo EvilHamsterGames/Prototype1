@@ -18,15 +18,19 @@ public class TrackButton : MonoBehaviour {
 
     void OnMouseDown()
     {
+        ActivateTrackButton();
+    }
+
+    void ActivateTrackButton() {
         if (owner == Minion.TEAM.TEAM_PLAYER)
         {
             if (waypoint.playerTrackDirection == Waypoint.DIRECTION.DIRECTION_LEFT)
             {
-                transform.Rotate(0, 0, 90);
+                transform.Rotate(0, 0, -90);
             }
             else
             {
-                transform.Rotate(0, 0, -90);
+                transform.Rotate(0, 0, 90);
             }
             waypoint.TogglePlayerTrack();
         }

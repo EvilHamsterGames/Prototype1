@@ -36,21 +36,24 @@ public class Minion : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        if (team == TEAM.TEAM_PLAYER)
+/*        if (team == TEAM.TEAM_PLAYER)
         {
             destination = GameObject.Find("playerBase").GetComponent<Waypoint>();
         }
         else
         {
             destination = GameObject.Find("enemyBase").GetComponent<Waypoint>();
-        }
+        }*/
         renderer.material.color = Color.red;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
-        Move();
+        if (destination != null)
+        {
+            Move();
+        }
 
 	}
 
