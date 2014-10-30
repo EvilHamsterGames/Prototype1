@@ -135,7 +135,7 @@ Camera:
   near clip plane: .00999999978
   far clip plane: 1000
   field of view: 60
-  orthographic: 0
+  orthographic: 1
   orthographic size: 10
   m_Depth: -1
   m_CullingMask:
@@ -155,7 +155,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 37824302}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -11.9125977, y: 0, z: -19.7123547}
+  m_LocalPosition: {x: -14.5568695, y: 0, z: -19.7123547}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -173,8 +173,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   edgeDistance: 5
   panSpeed: .300000012
-  camZoomMax: 0
-  camZoomMin: 5
+  camZoomInMax: 5
+  camZoomOutMax: 15
   camZoomSpeed: .5
 --- !u!82 &37824309
 AudioSource:
@@ -4073,7 +4073,7 @@ SpriteRenderer:
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 4bfdf1a946fd6d94099f27f240d162d8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &2031472564

@@ -6,8 +6,8 @@ public class PlayerCamera : MonoBehaviour {
     public float edgeDistance = 50.0f;
     public float panSpeed = 0.3f;
 
-    public float camZoomMax = -5.0f;
-    public float camZoomMin = 0.0f;
+    public float camZoomInMax = 5.0f;
+    public float camZoomOutMax = 15.0f;
     public float camZoomSpeed = 0.3f;
 
     private Vector3 tempPos;
@@ -38,11 +38,15 @@ public class PlayerCamera : MonoBehaviour {
         //Maybe adding zoom functionality here
         if (Input.GetAxis("Mouse ScrollWheel") < 0)
         {
-            tempPos += new Vector3(0, 0, -1 * camZoomSpeed);
+            Debug.Log("Mouse Zoomed out");
+            if (camera.orthographicSize < camZoomOutMax)
+                camera.orthographicSize += camZoomSpeed;
         }
         else if (Input.GetAxis("Mouse ScrollWheel") > 0)
         {
-            tempPos += new Vector3(0, 0, 1 * camZoomSpeed);
+            Debug.Log("Mouse Zoomed in");
+            if (camera.orthographicSize > camZoomInMax)
+                camera.orthographicSize += -camZoomSpeed;
         }
         transform.position = tempPos;
 	}
