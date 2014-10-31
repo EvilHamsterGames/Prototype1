@@ -193,6 +193,12 @@ public class Minion : MonoBehaviour {
                     circleCentre = destination.GetNextPlayerCircleCentre();
                 }
                 destination = destination.GetNextPlayerPoint();
+                if (destination == null)
+                {
+                    GameObject temp = GameObject.Find("Managers");
+                    temp.GetComponent<GameManager>().DamageParticipant(GameManager.Participants.ENEMY, (int)GetHP());
+                    Destroy(gameObject);
+                }
             }
             else
             {
@@ -203,6 +209,12 @@ public class Minion : MonoBehaviour {
                     circleCentre = destination.GetNextEnemyCircleCentre();
                 }
                 destination = destination.GetNextEnemyPoint();
+                if (destination == null)
+                {
+                    GameObject temp = GameObject.Find("Managers");
+                    temp.GetComponent<GameManager>().DamageParticipant(GameManager.Participants.PLAYER, (int)GetHP());
+                    Destroy(gameObject);
+                }
             }
         }
         else
