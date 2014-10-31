@@ -172,7 +172,7 @@ public class GameManager : MonoBehaviour {
                 spawnedMinion.SetHP(Minion.lightMinionHP);
                 spawnedMinion.SetSpeed(Minion.lightMinionSpeed);
                 spawnedMinion.SetTeam(Minion.TEAM.TEAM_PLAYER);
-                spawnedMinion.SetType(Minion.MINIONTYPE.MINIONTYPE_LIGHT);
+                spawnedMinion.SetMinionType(Minion.MINIONTYPE.MINIONTYPE_LIGHT);
                 spawnedMinion.SetDestination(playerSpawn);
             }
             else if(type == Minion.MINIONTYPE.MINIONTYPE_MEDIUM)
@@ -181,7 +181,7 @@ public class GameManager : MonoBehaviour {
                 spawnedMinion.SetHP(Minion.mediumMinionHP);
                 spawnedMinion.SetSpeed(Minion.mediumMinionSpeed);
                 spawnedMinion.SetTeam(Minion.TEAM.TEAM_PLAYER);
-                spawnedMinion.SetType(Minion.MINIONTYPE.MINIONTYPE_MEDIUM);
+                spawnedMinion.SetMinionType(Minion.MINIONTYPE.MINIONTYPE_MEDIUM);
                 spawnedMinion.SetDestination(playerSpawn);
             }
             else if(type == Minion.MINIONTYPE.MINIONTYPE_HEAVY)
@@ -190,7 +190,7 @@ public class GameManager : MonoBehaviour {
                 spawnedMinion.SetHP(Minion.heavyMinionHP);
                 spawnedMinion.SetSpeed(Minion.heavyMinionSpeed);
                 spawnedMinion.SetTeam(Minion.TEAM.TEAM_PLAYER);
-                spawnedMinion.SetType(Minion.MINIONTYPE.MINIONTYPE_HEAVY);
+                spawnedMinion.SetMinionType(Minion.MINIONTYPE.MINIONTYPE_HEAVY);
                 spawnedMinion.SetDestination(playerSpawn);
             }
         }
@@ -222,7 +222,7 @@ public class GameManager : MonoBehaviour {
                 spawnedMinion.SetHP(Minion.lightMinionHP);
                 spawnedMinion.SetSpeed(Minion.lightMinionSpeed);
                 spawnedMinion.SetTeam(Minion.TEAM.TEAM_ENEMY);
-                spawnedMinion.SetType(Minion.MINIONTYPE.MINIONTYPE_LIGHT);
+                spawnedMinion.SetMinionType(Minion.MINIONTYPE.MINIONTYPE_LIGHT);
                 spawnedMinion.SetDestination(enemySpawn);
             }
             else if (type == Minion.MINIONTYPE.MINIONTYPE_MEDIUM)
@@ -231,7 +231,7 @@ public class GameManager : MonoBehaviour {
                 spawnedMinion.SetHP(Minion.mediumMinionHP);
                 spawnedMinion.SetSpeed(Minion.mediumMinionSpeed);
                 spawnedMinion.SetTeam(Minion.TEAM.TEAM_ENEMY);
-                spawnedMinion.SetType(Minion.MINIONTYPE.MINIONTYPE_MEDIUM);
+                spawnedMinion.SetMinionType(Minion.MINIONTYPE.MINIONTYPE_MEDIUM);
                 spawnedMinion.SetDestination(enemySpawn);
             }
             else if (type == Minion.MINIONTYPE.MINIONTYPE_HEAVY)
@@ -240,7 +240,7 @@ public class GameManager : MonoBehaviour {
                 spawnedMinion.SetHP(Minion.heavyMinionHP);
                 spawnedMinion.SetSpeed(Minion.heavyMinionSpeed);
                 spawnedMinion.SetTeam(Minion.TEAM.TEAM_ENEMY);
-                spawnedMinion.SetType(Minion.MINIONTYPE.MINIONTYPE_HEAVY);
+                spawnedMinion.SetMinionType(Minion.MINIONTYPE.MINIONTYPE_HEAVY);
                 spawnedMinion.SetDestination(enemySpawn);
             }
         }

@@ -36,14 +36,6 @@ public class Minion : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-/*        if (team == TEAM.TEAM_PLAYER)
-        {
-            destination = GameObject.Find("playerBase").GetComponent<Waypoint>();
-        }
-        else
-        {
-            destination = GameObject.Find("enemyBase").GetComponent<Waypoint>();
-        }*/
         renderer.material.color = Color.red;
 	}
 	
@@ -75,7 +67,7 @@ public class Minion : MonoBehaviour {
 
     }
 
-    public void SetType(MINIONTYPE a_type)
+    public void SetMinionType(MINIONTYPE a_type)
     {
         type = a_type;
     }
@@ -100,7 +92,7 @@ public class Minion : MonoBehaviour {
         speed = a_speed;
     }
 
-    public MINIONTYPE GetType()
+    public MINIONTYPE GetMinionType()
     {
         return type;
     }
