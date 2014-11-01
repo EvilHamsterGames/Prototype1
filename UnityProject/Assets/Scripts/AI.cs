@@ -9,13 +9,10 @@ public class AI : MonoBehaviour {
     public float tickTime = 5.0f;
     public int randomSeed = 255;
 
-    public Waypoint switchOne;
-    public Waypoint switchTwo;
-    public Waypoint switchThree;
-
     public TrackButton buttonOne;
     public TrackButton buttonTwo;
     public TrackButton buttonThree;
+    public TrackButton buttonFour;
 
     //Variable that stores random number dictating AI's choices
     private int spawnChoice;
@@ -33,7 +30,7 @@ public class AI : MonoBehaviour {
     {
         timer += Time.deltaTime;
         spawnChoice = Random.Range(0, 3);
-        trackChoice = Random.Range(0, 2);
+        trackChoice = Random.Range(0, 3);
 
         if (timer < tickTime)
             return;
@@ -68,6 +65,9 @@ public class AI : MonoBehaviour {
                 break;
             case 2:
                 buttonThree.ActivateTrackButton();
+                break;
+            case 3:
+                buttonFour.ActivateTrackButton();
                 break;
         }
 

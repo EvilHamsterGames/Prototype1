@@ -5,6 +5,8 @@ public class UserInterface : MonoBehaviour {
 
 	GameManager manager;
 
+    private bool displayGameOver;
+
 	// Use this for initialization
 	void Start () 
 	{

@@ -35,8 +35,9 @@ public class Minion : MonoBehaviour {
     private float speed;
 
 	// Use this for initialization
-	void Start () {
-        renderer.material.color = Color.red;
+	void Start () 
+    {
+
 	}
 	
 	// Update is called once per frame
