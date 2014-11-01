@@ -27,6 +27,13 @@ public class GameManager : MonoBehaviour {
 	public Waypoint enemySpawn;
 	public GameObject minionPrefab;
 
+    public Sprite spritePlayerLight;
+    public Sprite spritePlayerMedium;
+    public Sprite spritePlayerHeavy;
+    public Sprite spriteEnemyLight;
+    public Sprite spriteEnemyMedium;
+    public Sprite spriteEnemyHeavy;
+
 	//These can't be set in editor and update throughout the game
 	private int playerGold;
 	private int enemyGold;
@@ -142,6 +149,7 @@ public class GameManager : MonoBehaviour {
         //Storing the spawned minions game object
         GameObject go;
         Minion spawnedMinion;
+        SpriteRenderer spawnedSprite;
 
 		if(player == Participants.PLAYER)
         {
@@ -165,6 +173,7 @@ public class GameManager : MonoBehaviour {
 
             go = Instantiate(minionPrefab, playerSpawn.transform.position, Quaternion.identity) as GameObject;
             spawnedMinion = go.GetComponent<Minion>();
+            spawnedSprite = go.GetComponent<SpriteRenderer>();
 
             if(type == Minion.MINIONTYPE.MINIONTYPE_LIGHT)
             {
@@ -174,6 +183,7 @@ public class GameManager : MonoBehaviour {
                 spawnedMinion.SetTeam(Minion.TEAM.TEAM_PLAYER);
                 spawnedMinion.SetMinionType(Minion.MINIONTYPE.MINIONTYPE_LIGHT);
                 spawnedMinion.SetDestination(playerSpawn);
+                spawnedSprite.sprite = spritePlayerLight;
             }
             else if(type == Minion.MINIONTYPE.MINIONTYPE_MEDIUM)
             {
@@ -183,6 +193,7 @@ public class GameManager : MonoBehaviour {
                 spawnedMinion.SetTeam(Minion.TEAM.TEAM_PLAYER);
                 spawnedMinion.SetMinionType(Minion.MINIONTYPE.MINIONTYPE_MEDIUM);
                 spawnedMinion.SetDestination(playerSpawn);
+                spawnedSprite.sprite = spritePlayerMedium;
             }
             else if(type == Minion.MINIONTYPE.MINIONTYPE_HEAVY)
             {
@@ -192,6 +203,7 @@ public class GameManager : MonoBehaviour {
                 spawnedMinion.SetTeam(Minion.TEAM.TEAM_PLAYER);
                 spawnedMinion.SetMinionType(Minion.MINIONTYPE.MINIONTYPE_HEAVY);
                 spawnedMinion.SetDestination(playerSpawn);
+                spawnedSprite.sprite = spritePlayerHeavy;
             }
         }
         else if (player == Participants.ENEMY)
@@ -215,6 +227,7 @@ public class GameManager : MonoBehaviour {
 
             go = Instantiate(minionPrefab, enemySpawn.transform.position, Quaternion.identity) as GameObject;
             spawnedMinion = go.GetComponent<Minion>();
+            spawnedSprite = go.GetComponent<SpriteRenderer>();
 
             if (type == Minion.MINIONTYPE.MINIONTYPE_LIGHT)
             {
@@ -224,6 +237,7 @@ public class GameManager : MonoBehaviour {
                 spawnedMinion.SetTeam(Minion.TEAM.TEAM_ENEMY);
                 spawnedMinion.SetMinionType(Minion.MINIONTYPE.MINIONTYPE_LIGHT);
                 spawnedMinion.SetDestination(enemySpawn);
+                spawnedSprite.sprite = spriteEnemyLight;
             }
             else if (type == Minion.MINIONTYPE.MINIONTYPE_MEDIUM)
             {
@@ -233,6 +247,7 @@ public class GameManager : MonoBehaviour {
                 spawnedMinion.SetTeam(Minion.TEAM.TEAM_ENEMY);
                 spawnedMinion.SetMinionType(Minion.MINIONTYPE.MINIONTYPE_MEDIUM);
                 spawnedMinion.SetDestination(enemySpawn);
+                spawnedSprite.sprite = spriteEnemyMedium;
             }
             else if (type == Minion.MINIONTYPE.MINIONTYPE_HEAVY)
             {
@@ -242,6 +257,7 @@ public class GameManager : MonoBehaviour {
                 spawnedMinion.SetTeam(Minion.TEAM.TEAM_ENEMY);
                 spawnedMinion.SetMinionType(Minion.MINIONTYPE.MINIONTYPE_HEAVY);
                 spawnedMinion.SetDestination(enemySpawn);
+                spawnedSprite.sprite = spriteEnemyHeavy;
             }
         }
 	}

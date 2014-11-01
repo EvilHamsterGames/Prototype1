@@ -1498,6 +1498,36 @@ Prefab:
       propertyPath: buttonThree
       value: 
       objectReference: {fileID: 1884153302}
+    - target: {fileID: 11400000, guid: 77557373f6204b34fabb65a9573812bb, type: 2}
+      propertyPath: spritePlayerLight
+      value: 
+      objectReference: {fileID: 21300000, guid: 00134bb5e7aa8a34c820f7851c3c79e9,
+        type: 3}
+    - target: {fileID: 11400000, guid: 77557373f6204b34fabb65a9573812bb, type: 2}
+      propertyPath: spritePlayerMedium
+      value: 
+      objectReference: {fileID: 21300000, guid: f2a536d9f8438cc42a45cac3b098173c,
+        type: 3}
+    - target: {fileID: 11400000, guid: 77557373f6204b34fabb65a9573812bb, type: 2}
+      propertyPath: spritePlayerHeavy
+      value: 
+      objectReference: {fileID: 21300000, guid: 8f69167696835b4469cce14c9cee3e9b,
+        type: 3}
+    - target: {fileID: 11400000, guid: 77557373f6204b34fabb65a9573812bb, type: 2}
+      propertyPath: spriteEnemyLight
+      value: 
+      objectReference: {fileID: 21300000, guid: fd1cdb5de42294e4eb5ef4a40e4eabcd,
+        type: 3}
+    - target: {fileID: 11400000, guid: 77557373f6204b34fabb65a9573812bb, type: 2}
+      propertyPath: spriteEnemyMedium
+      value: 
+      objectReference: {fileID: 21300000, guid: 16ae8e2a3de67eb44abad52c4e3df0b8,
+        type: 3}
+    - target: {fileID: 11400000, guid: 77557373f6204b34fabb65a9573812bb, type: 2}
+      propertyPath: spriteEnemyHeavy
+      value: 
+      objectReference: {fileID: 21300000, guid: c149420cfeb20a74980516afa74de510,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 77557373f6204b34fabb65a9573812bb, type: 2}
   m_RootGameObject: {fileID: 740473529}
@@ -2663,6 +2693,12 @@ MonoBehaviour:
   playerSpawn: {fileID: 1306969359}
   enemySpawn: {fileID: 1649862507}
   minionPrefab: {fileID: 100000, guid: 80220ea3f259970498aefce7d87dbd2a, type: 2}
+  spritePlayerLight: {fileID: 21300000, guid: 00134bb5e7aa8a34c820f7851c3c79e9, type: 3}
+  spritePlayerMedium: {fileID: 21300000, guid: f2a536d9f8438cc42a45cac3b098173c, type: 3}
+  spritePlayerHeavy: {fileID: 21300000, guid: 8f69167696835b4469cce14c9cee3e9b, type: 3}
+  spriteEnemyLight: {fileID: 21300000, guid: fd1cdb5de42294e4eb5ef4a40e4eabcd, type: 3}
+  spriteEnemyMedium: {fileID: 21300000, guid: 16ae8e2a3de67eb44abad52c4e3df0b8, type: 3}
+  spriteEnemyHeavy: {fileID: 21300000, guid: c149420cfeb20a74980516afa74de510, type: 3}
 --- !u!4 &740473532
 Transform:
   m_ObjectHideFlags: 0
