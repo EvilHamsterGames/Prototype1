@@ -264,9 +264,7 @@ public class GameManager : MonoBehaviour {
 
 	void GameOver(Participants winner)
 	{
-		//TODO code for the end of the game 
-		//(Notifications for interface and ending score and perhaps transition back to main menu)
-		// Could pass in tag for winner or just check the hp inside this method to see who won
-		// UserInterface.DisplayGameOver(); Something like that...lel
+        UserInterface gui = GetComponent<UserInterface>();
+        gui.displayGameOver = true;
 	}
 }

@@ -5,7 +5,7 @@ public class UserInterface : MonoBehaviour {
 
 	GameManager manager;
 
-    private bool displayGameOver;
+    public bool displayGameOver;
 
 	// Use this for initialization
 	void Start () 
@@ -42,6 +42,11 @@ public class UserInterface : MonoBehaviour {
         if (GUI.Button(new Rect(Screen.width / 2 + 110, 40, 90, 25), "Heavy Minion"))
         {
             manager.SpawnMinion(GameManager.Participants.PLAYER, Minion.MINIONTYPE.MINIONTYPE_HEAVY);
+        }
+
+        if(displayGameOver == true)
+        {
+            GUI.Label(new Rect(Screen.width / 2, Screen.height / 2, 200, 100), "GAME OVER");
         }
 	}
 }
