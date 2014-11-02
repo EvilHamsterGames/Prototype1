@@ -95,8 +95,25 @@ public class AI : MonoBehaviour {
     void Start()
     {
         manager = this.GetComponent("GameManager") as GameManager;
-        float minionSpawnType = Random.Range(0, 3);
-        float trackChangeTime = Random.Range(trackChangeTimeMin, trackChangeTimeMax);
+        minionSpawnType = Random.Range(0, 3);
+        trackChangeTime = Random.Range(trackChangeTimeMin, trackChangeTimeMax);
+
+        if ((int)Random.Range(0, 2) == 1)
+        {
+            buttonOne.ActivateTrackButton();
+        }
+        if ((int)Random.Range(0, 2) == 1)
+        {
+            buttonTwo.ActivateTrackButton();
+        }
+        if ((int)Random.Range(0, 2) == 1)
+        {
+            buttonThree.ActivateTrackButton();
+        }
+        if ((int)Random.Range(0, 2) == 1)
+        {
+            buttonFour.ActivateTrackButton();
+        }
     }
 
     // Update is called once per frame
@@ -110,18 +127,21 @@ public class AI : MonoBehaviour {
             case 0:
                 if (manager.SpawnMinion(GameManager.Participants.ENEMY, Minion.MINIONTYPE.MINIONTYPE_LIGHT))
                 {
+                    Debug.Log("Light");
                     minionSpawned = true;
                 }
                 break;
             case 1:
                 if (manager.SpawnMinion(GameManager.Participants.ENEMY, Minion.MINIONTYPE.MINIONTYPE_MEDIUM))
                 {
+                    Debug.Log("Medium");
                     minionSpawned = true;
                 }
                 break;
             default:
                 if (manager.SpawnMinion(GameManager.Participants.ENEMY, Minion.MINIONTYPE.MINIONTYPE_HEAVY))
                 {
+                    Debug.Log("Heavy");
                     minionSpawned = true;
                 }
                 break;
