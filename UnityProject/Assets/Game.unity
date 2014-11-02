@@ -1552,6 +1552,11 @@ Prefab:
       propertyPath: heavyMinionCost
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: 77557373f6204b34fabb65a9573812bb, type: 2}
+      propertyPath: skin
+      value: 
+      objectReference: {fileID: 11400000, guid: 31cdf3cf291c606408b08e4063e9f135,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 77557373f6204b34fabb65a9573812bb, type: 2}
   m_RootGameObject: {fileID: 740473529}
@@ -2695,6 +2700,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   displayGameOver: 0
+  skin: {fileID: 11400000, guid: 31cdf3cf291c606408b08e4063e9f135, type: 2}
 --- !u!114 &740473531
 MonoBehaviour:
   m_ObjectHideFlags: 0

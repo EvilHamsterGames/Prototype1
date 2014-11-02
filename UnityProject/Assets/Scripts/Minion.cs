@@ -47,11 +47,14 @@ public class Minion : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        if (destination != null && isMoving == true)
+        if (destination != null)
         {
-            Move();
+            if (isMoving == true)
+                Move();
+            else
+                isMoving = true;
         }
-
+        
 	}
 
     //Runs when minion collides with another object
@@ -65,19 +68,17 @@ public class Minion : MonoBehaviour {
             other.TakeDamage(myHP);
             TakeDamage(opponentHP);
         }
+       
+    }
 
+    void OnTriggerStay(Collider a_object)
+    {
+        Minion other = a_object.GetComponent<Minion>();
         if (other.GetTeam() == GetTeam())
         {
             if (spawnTime >= other.spawnTime)
                 isMoving = false;
         }
-
-       
-    }
-
-    void OnTriggerExit()
-    {
-        isMoving = true;
     }
 
     public void SetMinionType(MINIONTYPE a_type)
