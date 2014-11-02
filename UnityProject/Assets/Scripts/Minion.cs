@@ -34,16 +34,20 @@ public class Minion : MonoBehaviour {
     private uint hP;
     private float speed;
     private float facingAngle = 0;
+    private bool isMoving;
+    public float spawnTime;
 
 	// Use this for initialization
 	void Start () 
     {
+        isMoving = true;
+        spawnTime = Time.realtimeSinceStartup;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
-        if (destination != null)
+        if (destination != null && isMoving == true)
         {
             Move();
         }
@@ -61,11 +65,19 @@ public class Minion : MonoBehaviour {
             other.TakeDamage(myHP);
             TakeDamage(opponentHP);
         }
+
+        if (other.GetTeam() == GetTeam())
+        {
+            if(spawnTime >= other.spawnTime)
+                isMoving = false;
+        }
+
+       
     }
 
-    void Display()
+    void OnTriggerExit()
     {
-
+        isMoving = true;
     }
 
     public void SetMinionType(MINIONTYPE a_type)
