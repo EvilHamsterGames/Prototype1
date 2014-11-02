@@ -3,7 +3,7 @@ using System.Collections;
 
 public class AI : MonoBehaviour {
 
-    GameManager manager;
+/*    GameManager manager;
 
     static float timer = 0.0f;
     public float tickTime = 5.0f;
@@ -38,14 +38,17 @@ public class AI : MonoBehaviour {
         switch (spawnChoice)
         {
             case 0:
+                Debug.Log("Light");
                 manager.SpawnMinion(GameManager.Participants.ENEMY, Minion.MINIONTYPE.MINIONTYPE_LIGHT);
                 timer = 0.0f;
                 break;
             case 1:
+                Debug.Log("Medium");
                 manager.SpawnMinion(GameManager.Participants.ENEMY, Minion.MINIONTYPE.MINIONTYPE_MEDIUM);
                 timer = 0.0f;
                 break;
             case 2:
+                Debug.Log("Heavy");
                 manager.SpawnMinion(GameManager.Participants.ENEMY, Minion.MINIONTYPE.MINIONTYPE_HEAVY);
                 timer = 0.0f;
                 break;
@@ -71,5 +74,84 @@ public class AI : MonoBehaviour {
                 break;
         }
 
-	}
+	}*/
+
+    GameManager manager;
+
+    static float timer = 0.0f;
+
+    const float trackChangeTimeMin = 3.0f;
+    const float trackChangeTimeMax = 8.0f;
+
+    public TrackButton buttonOne;
+    public TrackButton buttonTwo;
+    public TrackButton buttonThree;
+    public TrackButton buttonFour;
+
+    float minionSpawnType;
+    float trackChangeTime;
+
+    // Use this for initialization
+    void Start()
+    {
+        manager = this.GetComponent("GameManager") as GameManager;
+        float minionSpawnType = Random.Range(0, 3);
+        float trackChangeTime = Random.Range(trackChangeTimeMin, trackChangeTimeMax);
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        timer += Time.deltaTime;
+
+        bool minionSpawned = false;
+        switch ((int)minionSpawnType)
+        {
+            case 0:
+                if (manager.SpawnMinion(GameManager.Participants.ENEMY, Minion.MINIONTYPE.MINIONTYPE_LIGHT))
+                {
+                    minionSpawned = true;
+                }
+                break;
+            case 1:
+                if (manager.SpawnMinion(GameManager.Participants.ENEMY, Minion.MINIONTYPE.MINIONTYPE_MEDIUM))
+                {
+                    minionSpawned = true;
+                }
+                break;
+            default:
+                if (manager.SpawnMinion(GameManager.Participants.ENEMY, Minion.MINIONTYPE.MINIONTYPE_HEAVY))
+                {
+                    minionSpawned = true;
+                }
+                break;
+        }
+
+        if (minionSpawned == true)
+        {
+            minionSpawnType = Random.Range(0, 3);
+        }
+
+        if (timer >= trackChangeTime)
+        {
+            if ((int)Random.Range(0, 2) == 1)
+            {
+                buttonOne.ActivateTrackButton();
+            }
+            if ((int)Random.Range(0, 2) == 1)
+            {
+                buttonTwo.ActivateTrackButton();
+            }
+            if ((int)Random.Range(0, 2) == 1)
+            {
+                buttonThree.ActivateTrackButton();
+            }
+            if ((int)Random.Range(0, 2) == 1)
+            {
+                buttonFour.ActivateTrackButton();
+            }
+            timer = 0;
+            trackChangeTime = Random.Range(trackChangeTimeMin, trackChangeTimeMax);
+        }
+    }
 }

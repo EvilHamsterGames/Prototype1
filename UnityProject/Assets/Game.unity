@@ -2728,8 +2728,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a629306f44d03c1449d08ae1940c96eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tickTime: 2
-  randomSeed: 255
   buttonOne: {fileID: 2031472564}
   buttonTwo: {fileID: 1875332738}
   buttonThree: {fileID: 1884153302}

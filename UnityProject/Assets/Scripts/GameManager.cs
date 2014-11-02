@@ -144,6 +144,7 @@ public class GameManager : MonoBehaviour {
 		} 
 	}
 
+    /*
 	public void SpawnMinion(Participants player, Minion.MINIONTYPE type)
 	{
         //Storing the spawned minions game object
@@ -261,6 +262,126 @@ public class GameManager : MonoBehaviour {
             }
         }
 	}
+     */
+
+    public bool SpawnMinion(Participants player, Minion.MINIONTYPE type)
+    {
+        //Storing the spawned minions game object
+        GameObject go;
+        Minion spawnedMinion;
+        SpriteRenderer spawnedSprite;
+
+        if (player == Participants.PLAYER)
+        {
+
+            //Gold check
+            if (type == Minion.MINIONTYPE.MINIONTYPE_LIGHT)
+            {
+                if (lightMinionCost > playerGold)
+                    return false;
+            }
+            else if (type == Minion.MINIONTYPE.MINIONTYPE_MEDIUM)
+            {
+                if (mediumMinionCost > playerGold)
+                    return false;
+            }
+            else if (type == Minion.MINIONTYPE.MINIONTYPE_HEAVY)
+            {
+                if (heavyMinionCost > playerGold)
+                    return false;
+            }
+
+            go = Instantiate(minionPrefab, playerSpawn.transform.position, Quaternion.identity) as GameObject;
+            spawnedMinion = go.GetComponent<Minion>();
+            spawnedSprite = go.GetComponent<SpriteRenderer>();
+
+            if (type == Minion.MINIONTYPE.MINIONTYPE_LIGHT)
+            {
+                SubtractGold(Participants.PLAYER, lightMinionCost);
+                spawnedMinion.SetHP(Minion.lightMinionHP);
+                spawnedMinion.SetSpeed(Minion.lightMinionSpeed);
+                spawnedMinion.SetTeam(Minion.TEAM.TEAM_PLAYER);
+                spawnedMinion.SetMinionType(Minion.MINIONTYPE.MINIONTYPE_LIGHT);
+                spawnedMinion.SetDestination(playerSpawn);
+                spawnedSprite.sprite = spritePlayerLight;
+            }
+            else if (type == Minion.MINIONTYPE.MINIONTYPE_MEDIUM)
+            {
+                SubtractGold(Participants.PLAYER, mediumMinionCost);
+                spawnedMinion.SetHP(Minion.mediumMinionHP);
+                spawnedMinion.SetSpeed(Minion.mediumMinionSpeed);
+                spawnedMinion.SetTeam(Minion.TEAM.TEAM_PLAYER);
+                spawnedMinion.SetMinionType(Minion.MINIONTYPE.MINIONTYPE_MEDIUM);
+                spawnedMinion.SetDestination(playerSpawn);
+                spawnedSprite.sprite = spritePlayerMedium;
+            }
+            else if (type == Minion.MINIONTYPE.MINIONTYPE_HEAVY)
+            {
+                SubtractGold(Participants.PLAYER, heavyMinionCost);
+                spawnedMinion.SetHP(Minion.heavyMinionHP);
+                spawnedMinion.SetSpeed(Minion.heavyMinionSpeed);
+                spawnedMinion.SetTeam(Minion.TEAM.TEAM_PLAYER);
+                spawnedMinion.SetMinionType(Minion.MINIONTYPE.MINIONTYPE_HEAVY);
+                spawnedMinion.SetDestination(playerSpawn);
+                spawnedSprite.sprite = spritePlayerHeavy;
+            }
+        }
+        else if (player == Participants.ENEMY)
+        {
+            //Gold check
+            if (type == Minion.MINIONTYPE.MINIONTYPE_LIGHT)
+            {
+                if (lightMinionCost > enemyGold)
+                    return false;
+            }
+            else if (type == Minion.MINIONTYPE.MINIONTYPE_MEDIUM)
+            {
+                if (mediumMinionCost > enemyGold)
+                    return false;
+            }
+            else if (type == Minion.MINIONTYPE.MINIONTYPE_HEAVY)
+            {
+                if (heavyMinionCost > enemyGold)
+                    return false;
+            }
+
+            go = Instantiate(minionPrefab, enemySpawn.transform.position, Quaternion.identity) as GameObject;
+            spawnedMinion = go.GetComponent<Minion>();
+            spawnedSprite = go.GetComponent<SpriteRenderer>();
+
+            if (type == Minion.MINIONTYPE.MINIONTYPE_LIGHT)
+            {
+                SubtractGold(Participants.ENEMY, lightMinionCost);
+                spawnedMinion.SetHP(Minion.lightMinionHP);
+                spawnedMinion.SetSpeed(Minion.lightMinionSpeed);
+                spawnedMinion.SetTeam(Minion.TEAM.TEAM_ENEMY);
+                spawnedMinion.SetMinionType(Minion.MINIONTYPE.MINIONTYPE_LIGHT);
+                spawnedMinion.SetDestination(enemySpawn);
+                spawnedSprite.sprite = spriteEnemyLight;
+            }
+            else if (type == Minion.MINIONTYPE.MINIONTYPE_MEDIUM)
+            {
+                SubtractGold(Participants.ENEMY, mediumMinionCost);
+                spawnedMinion.SetHP(Minion.mediumMinionHP);
+                spawnedMinion.SetSpeed(Minion.mediumMinionSpeed);
+                spawnedMinion.SetTeam(Minion.TEAM.TEAM_ENEMY);
+                spawnedMinion.SetMinionType(Minion.MINIONTYPE.MINIONTYPE_MEDIUM);
+                spawnedMinion.SetDestination(enemySpawn);
+                spawnedSprite.sprite = spriteEnemyMedium;
+            }
+            else if (type == Minion.MINIONTYPE.MINIONTYPE_HEAVY)
+            {
+                SubtractGold(Participants.ENEMY, heavyMinionCost);
+                spawnedMinion.SetHP(Minion.heavyMinionHP);
+                spawnedMinion.SetSpeed(Minion.heavyMinionSpeed);
+                spawnedMinion.SetTeam(Minion.TEAM.TEAM_ENEMY);
+                spawnedMinion.SetMinionType(Minion.MINIONTYPE.MINIONTYPE_HEAVY);
+                spawnedMinion.SetDestination(enemySpawn);
+                spawnedSprite.sprite = spriteEnemyHeavy;
+            }
+        }
+        return true;
+    }
 
 	void GameOver(Participants winner)
 	{
