@@ -18,9 +18,9 @@ public class Minion : MonoBehaviour {
         TEAM_COUNT
     };
 
-    public const uint lightMinionHP = 1;
-    public const uint mediumMinionHP = 2;
-    public const uint heavyMinionHP = 3;
+    public const uint lightMinionHP = 5;
+    public const uint mediumMinionHP = 15;
+    public const uint heavyMinionHP = 30;
     public const float lightMinionSpeed = 3;
     public const float mediumMinionSpeed = 2;
     public const float heavyMinionSpeed = 1;

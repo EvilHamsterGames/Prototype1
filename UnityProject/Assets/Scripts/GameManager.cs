@@ -19,8 +19,8 @@ public class GameManager : MonoBehaviour {
 	public int goldTickAmount = 5;
     public float goldTickTime = 3f;
 
-    public int lightMinionCost = 3;
-    public int mediumMinionCost = 7;
+    public int lightMinionCost = 5;
+    public int mediumMinionCost = 10;
     public int heavyMinionCost = 15;
 
 	public Waypoint playerSpawn;
