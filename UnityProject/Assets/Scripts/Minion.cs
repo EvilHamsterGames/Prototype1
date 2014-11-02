@@ -33,11 +33,11 @@ public class Minion : MonoBehaviour {
     private TEAM team;
     private uint hP;
     private float speed;
+    private float facingAngle = 0;
 
 	// Use this for initialization
 	void Start () 
     {
-
 	}
 	
 	// Update is called once per frame
@@ -165,18 +165,86 @@ public class Minion : MonoBehaviour {
         }
     }
 
+    private float GetPolarAngle( float a_xDiff, float a_yDiff, bool a_returnDegrees)
+    {
+        float degreesToRad = Mathf.PI / 180;
+        float polarAngle = -1;
+
+        switch (GetQuadrant(a_xDiff, a_yDiff))
+        {
+            case 1:
+                polarAngle = Mathf.Atan(a_yDiff / a_xDiff);
+                break;
+            case 2:
+                polarAngle = (180 * degreesToRad) + Mathf.Atan(a_yDiff / a_xDiff);
+                break;
+            case 3:
+                polarAngle = (180 * degreesToRad) + Mathf.Atan(a_yDiff / a_xDiff);
+                break;
+            case 4:
+                polarAngle = (360 * degreesToRad) + Mathf.Atan(a_yDiff / a_xDiff);
+                break;
+            default:
+                if (a_xDiff == 0)
+                {
+                    if (a_yDiff > 0)
+                    {
+                        polarAngle = 90 * degreesToRad;
+                    }
+                    else if (a_yDiff < 0)
+                    {
+                        polarAngle = 270 * degreesToRad;
+                    }
+                    else
+                    {
+                        //Target is at object's current location
+                        polarAngle = -1;
+                    }
+                }
+                else if (a_yDiff == 0)
+                {
+                    if (a_xDiff > 0)
+                    {
+                        polarAngle = 0;
+                    }
+                    else
+                    {
+                        polarAngle = 180 * degreesToRad;
+                    }
+                }
+                break;
+        }
+        if (a_returnDegrees)
+        {
+            return polarAngle / degreesToRad;
+        }
+        else
+        {
+            return polarAngle;
+        }
+    }
+
+    //Face direction of movement
+    private void UpdateRotation(float a_xDiff, float a_yDiff)
+    {
+        float newFacingAngle = GetPolarAngle(a_xDiff, a_yDiff, true);
+        transform.Rotate(0, 0, newFacingAngle - facingAngle);
+        facingAngle = newFacingAngle;
+    }
+
     //Pathfinding
     public void Move()
     {
-        float degreesToRad = Mathf.PI / 180;
-        float polarAngle = 0;
+        float polarAngle = -1;
+        float previousX = GetX();
+        float previousY = GetY();
         float xDiff = destination.GetX() - GetX();
         float yDiff = destination.GetY() - GetY();
 
         //Destination is within movement speed. Set position to destination
         if (Mathf.Sqrt(Mathf.Pow(xDiff, 2) + Mathf.Pow(yDiff, 2)) < speed * Time.deltaTime)
         {
-            transform.Translate(xDiff, yDiff, 0);
+            transform.Translate(xDiff, yDiff, 0, Space.World);
             if (team == TEAM.TEAM_PLAYER)
             {
                 curveDirection = destination.GetNextPlayerCurveDirection();
@@ -215,55 +283,12 @@ public class Minion : MonoBehaviour {
             if (curveType == Waypoint.CURVE_TYPE.CURVE_TYPE_LINEAR)
             {
                 //Move in direct line towards destination
-                switch (GetQuadrant(xDiff, yDiff))
-                {
-                    case 1:
-                        polarAngle = Mathf.Atan(yDiff / xDiff);
-                        break;
-                    case 2:
-                        polarAngle = (180 * degreesToRad) + Mathf.Atan(yDiff / xDiff);
-                        break;
-                    case 3:
-                        polarAngle = (180 * degreesToRad) + Mathf.Atan(yDiff / xDiff);
-                        break;
-                    case 4:
-                        polarAngle = (360 * degreesToRad) + Mathf.Atan(yDiff / xDiff);
-                        break;
-                    default:
-                        if (xDiff == 0)
-                        {
-                            if (yDiff > 0)
-                            {
-                                polarAngle = 90 * degreesToRad;
-                            }
-                            else if (yDiff < 0)
-                            {
-                                polarAngle = 270 * degreesToRad;
-                            }
-                            else
-                            {
-                                //Target is at object's current location
-                                polarAngle = -1;
-                            }
-                        }
-                        else if (yDiff == 0)
-                        {
-                            if (xDiff > 0)
-                            {
-                                polarAngle = 0;
-                            }
-                            else
-                            {
-                                polarAngle = 180 * degreesToRad;
-                            }
-                        }
-                        break;
-                }
+                polarAngle = GetPolarAngle(xDiff, yDiff, false);
                 if (polarAngle != -1)
                 {
                     float xMovement = speed * Mathf.Cos(polarAngle) * Time.deltaTime;
                     float yMovement = speed * Mathf.Sin(polarAngle) * Time.deltaTime;
-                    transform.Translate(xMovement, yMovement, 0);
+                    transform.Translate(xMovement, yMovement, 0, Space.World);
                 }
             }
             else
@@ -273,56 +298,9 @@ public class Minion : MonoBehaviour {
                 yDiff = GetY() - circleCentre.y;
                 float radius = Mathf.Sqrt(Mathf.Pow(xDiff, 2) + Mathf.Pow(yDiff, 2));
 
-                //Calculate current polar angle
-                switch (GetQuadrant(xDiff, yDiff))
-                {
-                    case 1:
-                        polarAngle = Mathf.Atan(yDiff / xDiff);
-                        break;
-                    case 2:
-                        polarAngle = (180 * degreesToRad) + Mathf.Atan(yDiff / xDiff);
-                        break;
-                    case 3:
-                        polarAngle = (180 * degreesToRad) + Mathf.Atan(yDiff / xDiff);
-                        break;
-                    case 4:
-                        polarAngle = (360 * degreesToRad) + Mathf.Atan(yDiff / xDiff);
-                        break;
-                    default:
-                        if (xDiff == 0)
-                        {
-                            if (yDiff > 0)
-                            {
-                                polarAngle = 90 * degreesToRad;
-                            }
-                            else if (yDiff < 0)
-                            {
-                                polarAngle = 270 * degreesToRad;
-                            }
-                            else
-                            {
-                                //Target is at object's current location
-                                polarAngle = -1;
-                            }
-                        }
-                        else if (yDiff == 0)
-                        {
-                            if (xDiff > 0)
-                            {
-                                polarAngle = 0;
-                            }
-                            else
-                            {
-                                polarAngle = 180 * degreesToRad;
-                            }
-                        }
-                        break;
-                }
+                //Calculate current polar angle relative to circle centre
+                polarAngle = GetPolarAngle(xDiff, yDiff, false);
                 //Add change in polar angle moving along circular path
-                //James just making a bugfix here to get the game running
-                //You can't modify the components of a transform position directly it seems instead
-                //you have to copy it to a temp Vector2, make your changes and then copy it back in.
-                //I've modified the code here which should work, we'll discuss it further at tommorows meeting :P
                 Vector3 temp;
                 temp = transform.position;
 
@@ -341,6 +319,7 @@ public class Minion : MonoBehaviour {
                 transform.position = temp;
             }
         }
+        UpdateRotation(GetX() - previousX, GetY() - previousY);
     }
 
     public Vector3 GetPosition()
