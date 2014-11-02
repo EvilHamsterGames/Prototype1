@@ -127,21 +127,18 @@ public class AI : MonoBehaviour {
             case 0:
                 if (manager.SpawnMinion(GameManager.Participants.ENEMY, Minion.MINIONTYPE.MINIONTYPE_LIGHT))
                 {
-                    Debug.Log("Light");
                     minionSpawned = true;
                 }
                 break;
             case 1:
                 if (manager.SpawnMinion(GameManager.Participants.ENEMY, Minion.MINIONTYPE.MINIONTYPE_MEDIUM))
                 {
-                    Debug.Log("Medium");
                     minionSpawned = true;
                 }
                 break;
             default:
                 if (manager.SpawnMinion(GameManager.Participants.ENEMY, Minion.MINIONTYPE.MINIONTYPE_HEAVY))
                 {
-                    Debug.Log("Heavy");
                     minionSpawned = true;
                 }
                 break;

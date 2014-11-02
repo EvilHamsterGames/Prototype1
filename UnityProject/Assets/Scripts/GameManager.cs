@@ -12,16 +12,16 @@ public class GameManager : MonoBehaviour {
 
 	//Gameplay variables
 	//These can be set from the unity editor for easy access
-	public int startingHP = 100;
-	public int startingGold = 100;
+    public int startingHP;
+    public int startingGold;
 
-	public int goldCap = 1000;
-	public int goldTickAmount = 5;
-    public float goldTickTime = 3f;
+    public int goldCap;
+    public int goldTickAmount;
+    public float goldTickTime;
 
-    public int lightMinionCost = 5;
-    public int mediumMinionCost = 10;
-    public int heavyMinionCost = 15;
+    public int lightMinionCost;
+    public int mediumMinionCost;
+    public int heavyMinionCost;
 
 	public Waypoint playerSpawn;
 	public Waypoint enemySpawn;
