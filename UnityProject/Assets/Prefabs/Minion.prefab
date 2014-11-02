@@ -70,6 +70,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destination: {fileID: 0}
+  skin: {fileID: 11400000, guid: 31cdf3cf291c606408b08e4063e9f135, type: 2}
   spawnTime: 0
 --- !u!212 &21200000
 SpriteRenderer:

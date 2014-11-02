@@ -25,7 +25,8 @@ public class Minion : MonoBehaviour {
     public const float mediumMinionSpeed = 4;
     public const float heavyMinionSpeed = 2;
     public Waypoint destination;
-    
+    public GUISkin skin;
+
     private Vector3 circleCentre;
     private Waypoint.CURVE_TYPE curveType;
     private Waypoint.CURVE_DIRECTION curveDirection;
@@ -352,4 +353,17 @@ public class Minion : MonoBehaviour {
     {
         return transform.position.z;
     }
+
+    void OnGUI()
+    {
+        GUI.skin = skin;
+        skin.label.alignment = TextAnchor.MiddleCenter;
+
+        Vector3 screenPosition = Camera.current.WorldToScreenPoint(transform.position);// gets screen position.
+
+        screenPosition.y = Screen.height - (screenPosition.y + 1);// inverts y
+
+        GUI.Label(new Rect(screenPosition.x - 50, screenPosition.y - 25, 100, 24), "HP: " + hP);
+    }
+
 }
