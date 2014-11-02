@@ -90,6 +90,7 @@ public class GameManager : MonoBehaviour {
 			} 
 			else 
 			{
+                playerHP = 0;
 				GameOver(Participants.ENEMY);	
 			}
 		}
@@ -101,6 +102,7 @@ public class GameManager : MonoBehaviour {
 			} 
 			else 
 			{
+                enemyHP = 0;
 				GameOver(Participants.PLAYER);	
 			}
 		}
