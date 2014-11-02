@@ -1534,15 +1534,23 @@ Prefab:
       objectReference: {fileID: 1777845648}
     - target: {fileID: 11400000, guid: 77557373f6204b34fabb65a9573812bb, type: 2}
       propertyPath: lightMinionCost
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: 77557373f6204b34fabb65a9573812bb, type: 2}
       propertyPath: mediumMinionCost
-      value: 10
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: 77557373f6204b34fabb65a9573812bb, type: 2}
       propertyPath: startingGold
-      value: 100
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 77557373f6204b34fabb65a9573812bb, type: 2}
+      propertyPath: goldTickAmount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 77557373f6204b34fabb65a9573812bb, type: 2}
+      propertyPath: heavyMinionCost
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 77557373f6204b34fabb65a9573812bb, type: 2}
@@ -2700,13 +2708,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingHP: 100
-  startingGold: 100
+  startingGold: 20
   goldCap: 1000
-  goldTickAmount: 5
+  goldTickAmount: 1
   goldTickTime: 3
-  lightMinionCost: 5
-  mediumMinionCost: 10
-  heavyMinionCost: 15
+  lightMinionCost: 1
+  mediumMinionCost: 2
+  heavyMinionCost: 3
   playerSpawn: {fileID: 1306969359}
   enemySpawn: {fileID: 1649862507}
   minionPrefab: {fileID: 100000, guid: 80220ea3f259970498aefce7d87dbd2a, type: 2}
