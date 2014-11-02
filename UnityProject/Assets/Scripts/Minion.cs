@@ -21,9 +21,9 @@ public class Minion : MonoBehaviour {
     public const uint lightMinionHP = 5;
     public const uint mediumMinionHP = 15;
     public const uint heavyMinionHP = 30;
-    public const float lightMinionSpeed = 3;
-    public const float mediumMinionSpeed = 2;
-    public const float heavyMinionSpeed = 1;
+    public const float lightMinionSpeed = 6;
+    public const float mediumMinionSpeed = 4;
+    public const float heavyMinionSpeed = 2;
     public Waypoint destination;
     
     private Vector3 circleCentre;
