@@ -55,7 +55,6 @@ public class PauseMenu : MonoBehaviour
 	void Start() {
 		fpsarray = new float[Screen.width];
 		Time.timeScale = 1;
-		PauseGame();
 	}
 	
 	void OnPostRender() {
@@ -190,24 +189,24 @@ public class PauseMenu : MonoBehaviour
 	}
 	
 	void Qualities() {
-		switch (QualitySettings.currentLevel) 
+		switch (QualitySettings.GetQualityLevel()) 
 		{
-		case QualityLevel.Fastest:
+		case 0:
 			GUILayout.Label("Fastest");
 			break;
-		case QualityLevel.Fast:
+		case 1:
 			GUILayout.Label("Fast");
 			break;
-		case QualityLevel.Simple:
+		case 2:
 			GUILayout.Label("Simple");
 			break;
-		case QualityLevel.Good:
+		case 3:
 			GUILayout.Label("Good");
 			break;
-		case QualityLevel.Beautiful:
+		case 4:
 			GUILayout.Label("Beautiful");
 			break;
-		case QualityLevel.Fantastic:
+		case 5:
 			GUILayout.Label("Fantastic");
 			break;
 		}
@@ -246,7 +245,7 @@ public class PauseMenu : MonoBehaviour
 	}
 	
 	void ShowStatNums() {
-		GUILayout.BeginArea( new Rect(Screen.width - 100, 10, 100, 200));
+		GUILayout.BeginArea( new Rect(100, 10, 100, 200));
 		if (showfps) {
 			string fpsstring= fps.ToString ("#,##0 fps");
 			GUI.color = Color.Lerp(lowFPSColor, highFPSColor,(fps-lowFPS)/(highFPS-lowFPS));
@@ -332,7 +331,7 @@ public class PauseMenu : MonoBehaviour
 		currentPage = Page.None;
 		
 		if (IsBeginning() && start != null) {
-			start.active = true;
+            start.SetActive(true);
 		}
 	}
 	

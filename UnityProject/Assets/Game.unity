@@ -2680,6 +2680,7 @@ GameObject:
   - 114: {fileID: 740473531}
   - 114: {fileID: 740473530}
   - 114: {fileID: 740473533}
+  - 114: {fileID: 740473534}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -2758,6 +2759,32 @@ MonoBehaviour:
   buttonTwo: {fileID: 1875332738}
   buttonThree: {fileID: 1884153302}
   buttonFour: {fileID: 1777845648}
+--- !u!114 &740473534
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 740473529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9622efb11dee42a42812e97c1c2d72a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skin: {fileID: 0}
+  mat: {fileID: 0}
+  lowFPSColor: {r: 1, g: 0, b: 0, a: 1}
+  highFPSColor: {r: 0, g: 1, b: 0, a: 1}
+  lowFPS: 30
+  highFPS: 50
+  start: {fileID: 0}
+  url: unity.html
+  statColor: {r: 1, g: .921568632, b: .0156862754, a: 1}
+  credits:
+  - A Evil Hamster Games Production
+  - Artist ~ Blake Randell
+  - Designers ~ Angie Harvey & Michael Kalis
+  - Programmers ~ Liam Parker & James Teh
+  crediticons: []
 --- !u!1001 &774676911
 Prefab:
   m_ObjectHideFlags: 0
