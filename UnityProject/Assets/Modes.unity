@@ -85,6 +85,7 @@ GameObject:
   - 131: {fileID: 301372192}
   - 114: {fileID: 301372191}
   - 82: {fileID: 301372194}
+  - 114: {fileID: 301372195}
   m_Layer: 0
   m_Name: BackButton
   m_TagString: Untagged
@@ -120,8 +121,8 @@ GUITexture:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 76
-    height: 19
+    width: 0
+    height: 0
   m_LeftBorder: 0
   m_RightBorder: 0
   m_TopBorder: 0
@@ -133,8 +134,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 301372190}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .799950302, y: .120331801, z: 0}
-  m_LocalScale: {x: .0500000007, y: .0500000007, z: .0500000007}
+  m_LocalPosition: {x: .879999995, y: .129999995, z: 0}
+  m_LocalScale: {x: .129999995, y: .0799999982, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
@@ -196,6 +197,18 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+--- !u!114 &301372195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 301372190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92fd95eddeb99d1438c4546bbde57e1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scaleOnRatio1: {x: .0799999982, y: .0399999991}
 --- !u!1 &361530367
 GameObject:
   m_ObjectHideFlags: 0
@@ -391,6 +404,7 @@ GameObject:
   - 131: {fileID: 927510493}
   - 114: {fileID: 927510492}
   - 82: {fileID: 927510495}
+  - 114: {fileID: 927510496}
   m_Layer: 0
   m_Name: SurvivalButton
   m_TagString: Untagged
@@ -426,8 +440,8 @@ GUITexture:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 176
-    height: 20
+    width: 0
+    height: 0
   m_LeftBorder: 0
   m_RightBorder: 0
   m_TopBorder: 0
@@ -439,8 +453,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 927510491}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .77830714, y: .385280997, z: 0}
-  m_LocalScale: {x: .0500000007, y: .0500000007, z: .0500000007}
+  m_LocalPosition: {x: .88499999, y: .395000011, z: 0}
+  m_LocalScale: {x: .189999998, y: .0700000003, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
@@ -502,6 +516,18 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+--- !u!114 &927510496
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 927510491}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92fd95eddeb99d1438c4546bbde57e1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scaleOnRatio1: {x: .159999996, y: .0399999991}
 --- !u!1 &1255520137
 GameObject:
   m_ObjectHideFlags: 0
@@ -513,6 +539,7 @@ GameObject:
   - 131: {fileID: 1255520139}
   - 114: {fileID: 1255520138}
   - 82: {fileID: 1255520141}
+  - 114: {fileID: 1255520142}
   m_Layer: 0
   m_Name: TimeTrialButton
   m_TagString: Untagged
@@ -548,8 +575,8 @@ GUITexture:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 207
-    height: 20
+    width: 0
+    height: 0
   m_LeftBorder: 0
   m_RightBorder: 0
   m_TopBorder: 0
@@ -561,8 +588,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1255520137}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .765950322, y: .245123863, z: 0}
-  m_LocalScale: {x: .0500000007, y: .0500000007, z: .0500000007}
+  m_LocalPosition: {x: .879999995, y: .25999999, z: 0}
+  m_LocalScale: {x: .189999998, y: .0700000003, z: .0500000007}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
@@ -624,6 +651,18 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+--- !u!114 &1255520142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1255520137}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92fd95eddeb99d1438c4546bbde57e1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scaleOnRatio1: {x: .159999996, y: .0399999991}
 --- !u!1 &1294326274
 GameObject:
   m_ObjectHideFlags: 0
