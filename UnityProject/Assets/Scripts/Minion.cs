@@ -390,8 +390,10 @@ public class Minion : MonoBehaviour {
     {
         GUI.skin = skin;
         skin.label.alignment = TextAnchor.MiddleCenter;
+        Vector3 screenPosition = new Vector3();
 
-        Vector3 screenPosition = Camera.main.WorldToScreenPoint(transform.position);// gets screen position.
+        if(transform.position != null)
+            screenPosition = Camera.main.WorldToScreenPoint(transform.position);// gets screen position.
 
         screenPosition.y = Screen.height - (screenPosition.y + 1);// inverts y
 
