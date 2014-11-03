@@ -26,6 +26,7 @@ public class Minion : MonoBehaviour {
     public const float heavyMinionSpeed = 2;
     public Waypoint destination;
     public GUISkin skin;
+    public float speedMatchDistance;
 
     private Vector3 circleCentre;
     private Waypoint.CURVE_TYPE curveType;
@@ -34,9 +35,11 @@ public class Minion : MonoBehaviour {
     private TEAM team;
     private uint hP;
     private float speed;
+    private float baseSpeed;
     private float facingAngle = 0;
     private bool isMoving;
     public float spawnTime;
+    private GameObject leadingMinion = null;
 
 	// Use this for initialization
 	void Start () 
@@ -48,12 +51,25 @@ public class Minion : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+        if (leadingMinion != null)
+        {
+            float leadingMinionDistance = Vector3.Distance(transform.position, leadingMinion.transform.position);
+            if (leadingMinionDistance > speedMatchDistance)
+            {
+                speed = baseSpeed;
+                leadingMinion = null;
+            }
+        }
+        else
+        {
+            isMoving = true;
+            speed = baseSpeed;
+        }
+
         if (destination != null)
         {
             if (isMoving == true)
                 Move();
-            else
-                isMoving = true;
         }
         
 	}
@@ -78,8 +94,23 @@ public class Minion : MonoBehaviour {
         if (other.GetTeam() == GetTeam())
         {
             if (spawnTime >= other.spawnTime)
+            {
                 isMoving = false;
+                if (other.GetSpeed() < speed)
+                {
+                    speed = other.GetSpeed();
+                }
+                if ((leadingMinion == null) || (other.spawnTime > leadingMinion.GetComponent<Minion>().spawnTime))
+                {
+                    leadingMinion = other.gameObject;
+                }
+            }
         }
+    }
+
+    void OnTriggerExit(Collider a_object)
+    {
+        isMoving = true;
     }
 
     public void SetMinionType(MINIONTYPE a_type)
@@ -105,6 +136,7 @@ public class Minion : MonoBehaviour {
     public void SetSpeed(float a_speed)
     {
         speed = a_speed;
+        baseSpeed = speed;
     }
 
     public MINIONTYPE GetMinionType()

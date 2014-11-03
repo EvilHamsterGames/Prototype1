@@ -80,8 +80,8 @@ public class AI : MonoBehaviour {
 
     static float timer = 0.0f;
 
-    const float trackChangeTimeMin = 3.0f;
-    const float trackChangeTimeMax = 8.0f;
+    public float trackChangeTimeMin = 0;
+    public float trackChangeTimeMax = 0;
 
     public TrackButton buttonOne;
     public TrackButton buttonTwo;
