@@ -33,7 +33,7 @@ public class PauseMenu : MonoBehaviour
 	public Color statColor = Color.yellow;
 	
 	public string[] credits= {
-		"A Evil Hamster Games Production",
+		"An Evil Hamster Games Production",
 		"Artist ~ Blake Randell",
 		"Designers ~ Angie Harvey & Michael Kalis",
 		"Programmers ~ Liam Parker & James Teh"} ;
@@ -85,15 +85,6 @@ public class PauseMenu : MonoBehaviour
 		}
 	}
 	
-	static bool IsDashboard() {
-		return Application.platform == RuntimePlatform.OSXDashboardPlayer;
-	}
-	
-	static bool IsBrowser() {
-		return (Application.platform == RuntimePlatform.WindowsWebPlayer ||
-		        Application.platform == RuntimePlatform.OSXWebPlayer);
-	}
-	
 	void LateUpdate () {
 		if (showfps || showfpsgraph) {
 			FPSUpdate();
@@ -124,7 +115,6 @@ public class PauseMenu : MonoBehaviour
 			GUI.skin = skin;
 		}
 		ShowStatNums();
-		ShowLegal();
 		if (IsGamePaused()) {
 			GUI.color = statColor;
 			switch (currentPage) {
@@ -133,20 +123,6 @@ public class PauseMenu : MonoBehaviour
 			case Page.Credits: ShowCredits(); break;
 			}
 		}   
-	}
-	
-	void ShowLegal() {
-		if (!IsLegal()) {
-			GUI.Label(new Rect(Screen.width-100,Screen.height-20,90,20),
-			          "jdonavan.com");
-		}
-	}
-	
-	bool IsLegal() {
-		return !IsBrowser() || 
-			Application.absoluteURL.StartsWith("http://www.jdonavan.com/") ||
-				Application.absoluteURL.StartsWith("http://jdonavan.com/");
-		
 	}
 	
 	void ShowToolbar() {
@@ -295,9 +271,6 @@ public class PauseMenu : MonoBehaviour
 		}
 		if (GUILayout.Button ("Exit")) {
 			Application.Quit();
-		}
-		if (IsBrowser() && !IsBeginning() && GUILayout.Button ("Restart")) {
-			Application.OpenURL(url);
 		}
 		EndPage();
 	}

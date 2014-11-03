@@ -2780,15 +2780,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9622efb11dee42a42812e97c1c2d72a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skin: {fileID: 0}
+  skin: {fileID: 11400000, guid: 31cdf3cf291c606408b08e4063e9f135, type: 2}
   mat: {fileID: 0}
-  lowFPSColor: {r: 1, g: 0, b: 0, a: 1}
+  lowFPSColor: {r: 1, g: .68275857, b: 0, a: 1}
   highFPSColor: {r: 0, g: 1, b: 0, a: 1}
-  lowFPS: 30
-  highFPS: 50
+  lowFPS: 40
+  highFPS: 60
   start: {fileID: 0}
   url: unity.html
-  statColor: {r: 1, g: .921568632, b: .0156862754, a: 1}
+  statColor: {r: 1, g: 1, b: 1, a: 1}
   credits:
   - A Evil Hamster Games Production
   - Artist ~ Blake Randell
