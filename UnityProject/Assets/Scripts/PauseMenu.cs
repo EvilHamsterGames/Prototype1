@@ -37,6 +37,7 @@ public class PauseMenu : MonoBehaviour
 		"Artist ~ Blake Randell",
 		"Designers ~ Angie Harvey & Michael Kalis",
 		"Programmers ~ Liam Parker & James Teh"} ;
+	
 	public Texture[] crediticons;
 	
 	public enum Page {
@@ -291,6 +292,9 @@ public class PauseMenu : MonoBehaviour
 		}
 		if (GUILayout.Button ("Credits")) {
 			currentPage = Page.Credits;
+		}
+		if (GUILayout.Button ("Exit")) {
+			Application.Quit();
 		}
 		if (IsBrowser() && !IsBeginning() && GUILayout.Button ("Restart")) {
 			Application.OpenURL(url);
