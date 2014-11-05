@@ -27,26 +27,22 @@ public class UserInterface : MonoBehaviour {
 
         //Light minion button
 		if (GUI.Button (new Rect (Screen.width / 2 - 180, 45, 120, 25), "Light Minion")) 
-		{
 			manager.SpawnMinion (GameManager.Participants.PLAYER, Minion.MINIONTYPE.MINIONTYPE_LIGHT);
-		}
 
         //Medium minion button
         if (GUI.Button(new Rect(Screen.width / 2 - 60, 45, 120, 25), "Medium Minion"))
-        {
             manager.SpawnMinion(GameManager.Participants.PLAYER, Minion.MINIONTYPE.MINIONTYPE_MEDIUM);
-        }
 
         //Heavy minion button
         if (GUI.Button(new Rect(Screen.width / 2 + 60, 45, 120, 25), "Heavy Minion"))
-        {
             manager.SpawnMinion(GameManager.Participants.PLAYER, Minion.MINIONTYPE.MINIONTYPE_HEAVY);
-        }
 
         //Gameover Text
         if(displayGameOver == true)
         {
             GUI.Label(new Rect(Screen.width / 2 - 100, Screen.height / 2 - 50, 200, 100), "GAME OVER");
+            if (GUI.Button(new Rect(Screen.width / 2 - 150, Screen.height / 2 + 35, 300, 25), "Return to menu"))
+                Application.LoadLevel("MainMenu");
         }
 	}
 }
