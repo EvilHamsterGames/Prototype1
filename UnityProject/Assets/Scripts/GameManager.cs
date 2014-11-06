@@ -12,20 +12,27 @@ public class GameManager : MonoBehaviour {
 
 	//Gameplay variables
 	//These can be set from the unity editor for easy access
-	public int startingHP = 100;
-	public int startingGold = 100;
+    public int startingHP;
+    public int startingGold;
 
-	public int goldCap = 1000;
-	public int goldTickAmount = 5;
-    public float goldTickTime = 3f;
+    public int goldCap;
+    public int goldTickAmount;
+    public float goldTickTime;
 
-    public int lightMinionCost = 3;
-    public int mediumMinionCost = 7;
-    public int heavyMinionCost = 15;
+    public int lightMinionCost;
+    public int mediumMinionCost;
+    public int heavyMinionCost;
 
 	public Waypoint playerSpawn;
 	public Waypoint enemySpawn;
 	public GameObject minionPrefab;
+
+    public Sprite spritePlayerLight;
+    public Sprite spritePlayerMedium;
+    public Sprite spritePlayerHeavy;
+    public Sprite spriteEnemyLight;
+    public Sprite spriteEnemyMedium;
+    public Sprite spriteEnemyHeavy;
 
 	//These can't be set in editor and update throughout the game
 	private int playerGold;
@@ -83,6 +90,7 @@ public class GameManager : MonoBehaviour {
 			} 
 			else 
 			{
+                playerHP = 0;
 				GameOver(Participants.ENEMY);	
 			}
 		}
@@ -94,6 +102,7 @@ public class GameManager : MonoBehaviour {
 			} 
 			else 
 			{
+                enemyHP = 0;
 				GameOver(Participants.PLAYER);	
 			}
 		}
@@ -137,61 +146,66 @@ public class GameManager : MonoBehaviour {
 		} 
 	}
 
-	public void SpawnMinion(Participants player, Minion.MINIONTYPE type)
-	{
+    public bool SpawnMinion(Participants player, Minion.MINIONTYPE type)
+    {
         //Storing the spawned minions game object
         GameObject go;
         Minion spawnedMinion;
+        SpriteRenderer spawnedSprite;
 
-		if(player == Participants.PLAYER)
+        if (player == Participants.PLAYER)
         {
 
             //Gold check
-            if(type == Minion.MINIONTYPE.MINIONTYPE_LIGHT)
+            if (type == Minion.MINIONTYPE.MINIONTYPE_LIGHT)
             {
                 if (lightMinionCost > playerGold)
-                    return;
+                    return false;
             }
-            else if(type == Minion.MINIONTYPE.MINIONTYPE_MEDIUM)
+            else if (type == Minion.MINIONTYPE.MINIONTYPE_MEDIUM)
             {
                 if (mediumMinionCost > playerGold)
-                    return;
+                    return false;
             }
             else if (type == Minion.MINIONTYPE.MINIONTYPE_HEAVY)
             {
                 if (heavyMinionCost > playerGold)
-                    return;
+                    return false;
             }
 
             go = Instantiate(minionPrefab, playerSpawn.transform.position, Quaternion.identity) as GameObject;
             spawnedMinion = go.GetComponent<Minion>();
+            spawnedSprite = go.GetComponent<SpriteRenderer>();
 
-            if(type == Minion.MINIONTYPE.MINIONTYPE_LIGHT)
+            if (type == Minion.MINIONTYPE.MINIONTYPE_LIGHT)
             {
                 SubtractGold(Participants.PLAYER, lightMinionCost);
                 spawnedMinion.SetHP(Minion.lightMinionHP);
                 spawnedMinion.SetSpeed(Minion.lightMinionSpeed);
                 spawnedMinion.SetTeam(Minion.TEAM.TEAM_PLAYER);
-                spawnedMinion.SetType(Minion.MINIONTYPE.MINIONTYPE_LIGHT);
+                spawnedMinion.SetMinionType(Minion.MINIONTYPE.MINIONTYPE_LIGHT);
                 spawnedMinion.SetDestination(playerSpawn);
+                spawnedSprite.sprite = spritePlayerLight;
             }
-            else if(type == Minion.MINIONTYPE.MINIONTYPE_MEDIUM)
+            else if (type == Minion.MINIONTYPE.MINIONTYPE_MEDIUM)
             {
                 SubtractGold(Participants.PLAYER, mediumMinionCost);
                 spawnedMinion.SetHP(Minion.mediumMinionHP);
                 spawnedMinion.SetSpeed(Minion.mediumMinionSpeed);
                 spawnedMinion.SetTeam(Minion.TEAM.TEAM_PLAYER);
-                spawnedMinion.SetType(Minion.MINIONTYPE.MINIONTYPE_MEDIUM);
+                spawnedMinion.SetMinionType(Minion.MINIONTYPE.MINIONTYPE_MEDIUM);
                 spawnedMinion.SetDestination(playerSpawn);
+                spawnedSprite.sprite = spritePlayerMedium;
             }
-            else if(type == Minion.MINIONTYPE.MINIONTYPE_HEAVY)
+            else if (type == Minion.MINIONTYPE.MINIONTYPE_HEAVY)
             {
                 SubtractGold(Participants.PLAYER, heavyMinionCost);
                 spawnedMinion.SetHP(Minion.heavyMinionHP);
                 spawnedMinion.SetSpeed(Minion.heavyMinionSpeed);
                 spawnedMinion.SetTeam(Minion.TEAM.TEAM_PLAYER);
-                spawnedMinion.SetType(Minion.MINIONTYPE.MINIONTYPE_HEAVY);
+                spawnedMinion.SetMinionType(Minion.MINIONTYPE.MINIONTYPE_HEAVY);
                 spawnedMinion.SetDestination(playerSpawn);
+                spawnedSprite.sprite = spritePlayerHeavy;
             }
         }
         else if (player == Participants.ENEMY)
@@ -200,21 +214,22 @@ public class GameManager : MonoBehaviour {
             if (type == Minion.MINIONTYPE.MINIONTYPE_LIGHT)
             {
                 if (lightMinionCost > enemyGold)
-                    return;
+                    return false;
             }
             else if (type == Minion.MINIONTYPE.MINIONTYPE_MEDIUM)
             {
                 if (mediumMinionCost > enemyGold)
-                    return;
+                    return false;
             }
             else if (type == Minion.MINIONTYPE.MINIONTYPE_HEAVY)
             {
                 if (heavyMinionCost > enemyGold)
-                    return;
+                    return false;
             }
 
             go = Instantiate(minionPrefab, enemySpawn.transform.position, Quaternion.identity) as GameObject;
             spawnedMinion = go.GetComponent<Minion>();
+            spawnedSprite = go.GetComponent<SpriteRenderer>();
 
             if (type == Minion.MINIONTYPE.MINIONTYPE_LIGHT)
             {
@@ -222,8 +237,9 @@ public class GameManager : MonoBehaviour {
                 spawnedMinion.SetHP(Minion.lightMinionHP);
                 spawnedMinion.SetSpeed(Minion.lightMinionSpeed);
                 spawnedMinion.SetTeam(Minion.TEAM.TEAM_ENEMY);
-                spawnedMinion.SetType(Minion.MINIONTYPE.MINIONTYPE_LIGHT);
+                spawnedMinion.SetMinionType(Minion.MINIONTYPE.MINIONTYPE_LIGHT);
                 spawnedMinion.SetDestination(enemySpawn);
+                spawnedSprite.sprite = spriteEnemyLight;
             }
             else if (type == Minion.MINIONTYPE.MINIONTYPE_MEDIUM)
             {
@@ -231,8 +247,9 @@ public class GameManager : MonoBehaviour {
                 spawnedMinion.SetHP(Minion.mediumMinionHP);
                 spawnedMinion.SetSpeed(Minion.mediumMinionSpeed);
                 spawnedMinion.SetTeam(Minion.TEAM.TEAM_ENEMY);
-                spawnedMinion.SetType(Minion.MINIONTYPE.MINIONTYPE_MEDIUM);
+                spawnedMinion.SetMinionType(Minion.MINIONTYPE.MINIONTYPE_MEDIUM);
                 spawnedMinion.SetDestination(enemySpawn);
+                spawnedSprite.sprite = spriteEnemyMedium;
             }
             else if (type == Minion.MINIONTYPE.MINIONTYPE_HEAVY)
             {
@@ -240,17 +257,17 @@ public class GameManager : MonoBehaviour {
                 spawnedMinion.SetHP(Minion.heavyMinionHP);
                 spawnedMinion.SetSpeed(Minion.heavyMinionSpeed);
                 spawnedMinion.SetTeam(Minion.TEAM.TEAM_ENEMY);
-                spawnedMinion.SetType(Minion.MINIONTYPE.MINIONTYPE_HEAVY);
+                spawnedMinion.SetMinionType(Minion.MINIONTYPE.MINIONTYPE_HEAVY);
                 spawnedMinion.SetDestination(enemySpawn);
+                spawnedSprite.sprite = spriteEnemyHeavy;
             }
         }
-	}
+        return true;
+    }
 
 	void GameOver(Participants winner)
 	{
-		//TODO code for the end of the game 
-		//(Notifications for interface and ending score and perhaps transition back to main menu)
-		// Could pass in tag for winner or just check the hp inside this method to see who won
-		// UserInterface.DisplayGameOver(); Something like that...lel
+        UserInterface gui = GetComponent<UserInterface>();
+        gui.displayGameOver = true;
 	}
 }

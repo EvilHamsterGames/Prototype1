@@ -6,70 +6,96 @@ public class AI : MonoBehaviour {
     GameManager manager;
 
     static float timer = 0.0f;
-    public float tickTime = 5.0f;
-    public int randomSeed = 255;
 
-    public Waypoint switchOne;
-    public Waypoint switchTwo;
-    public Waypoint switchThree;
+    public float trackChangeTimeMin = 0;
+    public float trackChangeTimeMax = 0;
 
     public TrackButton buttonOne;
     public TrackButton buttonTwo;
     public TrackButton buttonThree;
+    public TrackButton buttonFour;
 
-    //Variable that stores random number dictating AI's choices
-    private int spawnChoice;
-    private int trackChoice;
+    float minionSpawnType;
+    float trackChangeTime;
 
-	// Use this for initialization
-	void Start () 
+    // Use this for initialization
+    void Start()
     {
         manager = this.GetComponent("GameManager") as GameManager;
-        Random.seed = randomSeed;
-	}
-	
-	// Update is called once per frame
-	void Update () 
+        minionSpawnType = Random.Range(0, 3);
+        trackChangeTime = Random.Range(trackChangeTimeMin, trackChangeTimeMax);
+
+        if ((int)Random.Range(0, 2) == 1)
+        {
+            buttonOne.ActivateTrackButton();
+        }
+        if ((int)Random.Range(0, 2) == 1)
+        {
+            buttonTwo.ActivateTrackButton();
+        }
+        if ((int)Random.Range(0, 2) == 1)
+        {
+            buttonThree.ActivateTrackButton();
+        }
+        if ((int)Random.Range(0, 2) == 1)
+        {
+            buttonFour.ActivateTrackButton();
+        }
+    }
+
+    // Update is called once per frame
+    void Update()
     {
         timer += Time.deltaTime;
-        spawnChoice = Random.Range(0, 3);
-        trackChoice = Random.Range(0, 2);
 
-        if (timer < tickTime)
-            return;
-
-        switch (spawnChoice)
+        bool minionSpawned = false;
+        switch ((int)minionSpawnType)
         {
             case 0:
-                manager.SpawnMinion(GameManager.Participants.ENEMY, Minion.MINIONTYPE.MINIONTYPE_LIGHT);
-                timer = 0.0f;
+                if (manager.SpawnMinion(GameManager.Participants.ENEMY, Minion.MINIONTYPE.MINIONTYPE_LIGHT))
+                {
+                    minionSpawned = true;
+                }
                 break;
             case 1:
-                manager.SpawnMinion(GameManager.Participants.ENEMY, Minion.MINIONTYPE.MINIONTYPE_MEDIUM);
-                timer = 0.0f;
+                if (manager.SpawnMinion(GameManager.Participants.ENEMY, Minion.MINIONTYPE.MINIONTYPE_MEDIUM))
+                {
+                    minionSpawned = true;
+                }
                 break;
-            case 2:
-                manager.SpawnMinion(GameManager.Participants.ENEMY, Minion.MINIONTYPE.MINIONTYPE_HEAVY);
-                timer = 0.0f;
-                break;
-            case 3:
-                Debug.Log("AI did nothing this tick");
-                timer = 0.0f;
+            default:
+                if (manager.SpawnMinion(GameManager.Participants.ENEMY, Minion.MINIONTYPE.MINIONTYPE_HEAVY))
+                {
+                    minionSpawned = true;
+                }
                 break;
         }
 
-        switch (trackChoice)
+        if (minionSpawned == true)
         {
-            case 0:
+            minionSpawnType = Random.Range(0, 3);
+        }
+
+        if (timer >= trackChangeTime)
+        {
+            if ((int)Random.Range(0, 2) == 1)
+            {
                 buttonOne.ActivateTrackButton();
-                break;
-            case 1:
+            }
+            if ((int)Random.Range(0, 2) == 1)
+            {
                 buttonTwo.ActivateTrackButton();
-                break;
-            case 2:
+            }
+            if ((int)Random.Range(0, 2) == 1)
+            {
                 buttonThree.ActivateTrackButton();
-                break;
+            }
+            if ((int)Random.Range(0, 2) == 1)
+            {
+                buttonFour.ActivateTrackButton();
+            }
+            timer = 0;
+            trackChangeTime = Random.Range(trackChangeTimeMin, trackChangeTimeMax);
         }
-
-	}
+    }
 }

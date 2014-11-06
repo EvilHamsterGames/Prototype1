@@ -11,6 +11,11 @@ public class GameSettings : MonoBehaviour {
 
     private static Mode currentMode;
 
+    void Start()
+    {
+        DontDestroyOnLoad(gameObject);
+    }
+
     public static void SetMode(Mode newMode)
     {
         currentMode = newMode;

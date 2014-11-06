@@ -23,6 +23,7 @@ public class PlayerCamera : MonoBehaviour {
     {
         tempPos = transform.position;
 
+        //Panning
         if (Input.mousePosition.x <= 0 + edgeDistance || Input.GetKey(KeyCode.LeftArrow))
         {
             if (camera.transform.position.x > -40)
@@ -44,7 +45,7 @@ public class PlayerCamera : MonoBehaviour {
                 tempPos += new Vector3(0, 1 * panSpeed, 0);
         }
 
-        //Maybe adding zoom functionality here
+        //Zoom
         if (Input.GetAxis("Mouse ScrollWheel") < 0)
         {
             Debug.Log("Mouse Zoomed out");

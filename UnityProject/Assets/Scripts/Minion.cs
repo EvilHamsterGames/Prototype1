@@ -18,14 +18,16 @@ public class Minion : MonoBehaviour {
         TEAM_COUNT
     };
 
-    public const uint lightMinionHP = 1;
-    public const uint mediumMinionHP = 2;
-    public const uint heavyMinionHP = 3;
-    public const float lightMinionSpeed = 3;
-    public const float mediumMinionSpeed = 2;
-    public const float heavyMinionSpeed = 1;
+    public const uint lightMinionHP = 5;
+    public const uint mediumMinionHP = 15;
+    public const uint heavyMinionHP = 30;
+    public const float lightMinionSpeed = 6;
+    public const float mediumMinionSpeed = 4;
+    public const float heavyMinionSpeed = 2;
     public Waypoint destination;
-    
+    public GUISkin skin;
+    public float speedMatchDistance;
+
     private Vector3 circleCentre;
     private Waypoint.CURVE_TYPE curveType;
     private Waypoint.CURVE_DIRECTION curveDirection;
@@ -33,28 +35,43 @@ public class Minion : MonoBehaviour {
     private TEAM team;
     private uint hP;
     private float speed;
+    private float baseSpeed;
+    private float facingAngle = 0;
+    private bool isMoving;
+    public float spawnTime;
+    private GameObject leadingMinion = null;
 
 	// Use this for initialization
-	void Start () {
-/*        if (team == TEAM.TEAM_PLAYER)
-        {
-            destination = GameObject.Find("playerBase").GetComponent<Waypoint>();
-        }
-        else
-        {
-            destination = GameObject.Find("enemyBase").GetComponent<Waypoint>();
-        }*/
-        renderer.material.color = Color.red;
+	void Start () 
+    {
+        isMoving = true;
+        spawnTime = Time.realtimeSinceStartup;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
-        if (destination != null)
+        if (leadingMinion != null)
         {
-            Move();
+            float leadingMinionDistance = Vector3.Distance(transform.position, leadingMinion.transform.position);
+            if (leadingMinionDistance > speedMatchDistance)
+            {
+                speed = baseSpeed;
+                leadingMinion = null;
+            }
+        }
+        else
+        {
+            isMoving = true;
+            speed = baseSpeed;
         }
 
+        if (destination != null)
+        {
+            if (isMoving == true)
+                Move();
+        }
+        
 	}
 
     //Runs when minion collides with another object
@@ -68,14 +85,35 @@ public class Minion : MonoBehaviour {
             other.TakeDamage(myHP);
             TakeDamage(opponentHP);
         }
+       
     }
 
-    void Display()
+    void OnTriggerStay(Collider a_object)
     {
-
+        Minion other = a_object.GetComponent<Minion>();
+        if (other.GetTeam() == GetTeam())
+        {
+            if (spawnTime >= other.spawnTime)
+            {
+                isMoving = false;
+                if (other.GetSpeed() < speed)
+                {
+                    speed = other.GetSpeed();
+                }
+                if ((leadingMinion == null) || (other.spawnTime > leadingMinion.GetComponent<Minion>().spawnTime))
+                {
+                    leadingMinion = other.gameObject;
+                }
+            }
+        }
     }
 
-    public void SetType(MINIONTYPE a_type)
+    void OnTriggerExit(Collider a_object)
+    {
+        isMoving = true;
+    }
+
+    public void SetMinionType(MINIONTYPE a_type)
     {
         type = a_type;
     }
@@ -98,9 +136,10 @@ public class Minion : MonoBehaviour {
     public void SetSpeed(float a_speed)
     {
         speed = a_speed;
+        baseSpeed = speed;
     }
 
-    public MINIONTYPE GetType()
+    public MINIONTYPE GetMinionType()
     {
         return type;
     }
@@ -131,14 +170,12 @@ public class Minion : MonoBehaviour {
         if (hP > a_damage)
         {
             hP = hP - a_damage;
-            Debug.Log("A minion was damaged");
             return true;
         }
         else
         {
             hP = 0;
             Destroy(gameObject);
-            Debug.Log("A minion was killed");
             return false;
         }
     }
@@ -172,18 +209,86 @@ public class Minion : MonoBehaviour {
         }
     }
 
+    private float GetPolarAngle( float a_xDiff, float a_yDiff, bool a_returnDegrees)
+    {
+        float degreesToRad = Mathf.PI / 180;
+        float polarAngle = -1;
+
+        switch (GetQuadrant(a_xDiff, a_yDiff))
+        {
+            case 1:
+                polarAngle = Mathf.Atan(a_yDiff / a_xDiff);
+                break;
+            case 2:
+                polarAngle = (180 * degreesToRad) + Mathf.Atan(a_yDiff / a_xDiff);
+                break;
+            case 3:
+                polarAngle = (180 * degreesToRad) + Mathf.Atan(a_yDiff / a_xDiff);
+                break;
+            case 4:
+                polarAngle = (360 * degreesToRad) + Mathf.Atan(a_yDiff / a_xDiff);
+                break;
+            default:
+                if (a_xDiff == 0)
+                {
+                    if (a_yDiff > 0)
+                    {
+                        polarAngle = 90 * degreesToRad;
+                    }
+                    else if (a_yDiff < 0)
+                    {
+                        polarAngle = 270 * degreesToRad;
+                    }
+                    else
+                    {
+                        //Target is at object's current location
+                        polarAngle = -1;
+                    }
+                }
+                else if (a_yDiff == 0)
+                {
+                    if (a_xDiff > 0)
+                    {
+                        polarAngle = 0;
+                    }
+                    else
+                    {
+                        polarAngle = 180 * degreesToRad;
+                    }
+                }
+                break;
+        }
+        if (a_returnDegrees)
+        {
+            return polarAngle / degreesToRad;
+        }
+        else
+        {
+            return polarAngle;
+        }
+    }
+
+    //Face direction of movement
+    private void UpdateRotation(float a_xDiff, float a_yDiff)
+    {
+        float newFacingAngle = GetPolarAngle(a_xDiff, a_yDiff, true);
+        transform.Rotate(0, 0, newFacingAngle - facingAngle);
+        facingAngle = newFacingAngle;
+    }
+
     //Pathfinding
     public void Move()
     {
-        float degreesToRad = Mathf.PI / 180;
-        float polarAngle = 0;
+        float polarAngle = -1;
+        float previousX = GetX();
+        float previousY = GetY();
         float xDiff = destination.GetX() - GetX();
         float yDiff = destination.GetY() - GetY();
 
         //Destination is within movement speed. Set position to destination
         if (Mathf.Sqrt(Mathf.Pow(xDiff, 2) + Mathf.Pow(yDiff, 2)) < speed * Time.deltaTime)
         {
-            transform.Translate(xDiff, yDiff, 0);
+            transform.Translate(xDiff, yDiff, 0, Space.World);
             if (team == TEAM.TEAM_PLAYER)
             {
                 curveDirection = destination.GetNextPlayerCurveDirection();
@@ -193,6 +298,12 @@ public class Minion : MonoBehaviour {
                     circleCentre = destination.GetNextPlayerCircleCentre();
                 }
                 destination = destination.GetNextPlayerPoint();
+                if (destination == null)
+                {
+                    GameObject temp = GameObject.Find("Managers");
+                    temp.GetComponent<GameManager>().DamageParticipant(GameManager.Participants.ENEMY, (int)GetHP());
+                    Destroy(gameObject);
+                }
             }
             else
             {
@@ -203,6 +314,12 @@ public class Minion : MonoBehaviour {
                     circleCentre = destination.GetNextEnemyCircleCentre();
                 }
                 destination = destination.GetNextEnemyPoint();
+                if (destination == null)
+                {
+                    GameObject temp = GameObject.Find("Managers");
+                    temp.GetComponent<GameManager>().DamageParticipant(GameManager.Participants.PLAYER, (int)GetHP());
+                    Destroy(gameObject);
+                }
             }
         }
         else
@@ -210,55 +327,12 @@ public class Minion : MonoBehaviour {
             if (curveType == Waypoint.CURVE_TYPE.CURVE_TYPE_LINEAR)
             {
                 //Move in direct line towards destination
-                switch (GetQuadrant(xDiff, yDiff))
-                {
-                    case 1:
-                        polarAngle = Mathf.Atan(yDiff / xDiff);
-                        break;
-                    case 2:
-                        polarAngle = (180 * degreesToRad) + Mathf.Atan(yDiff / xDiff);
-                        break;
-                    case 3:
-                        polarAngle = (180 * degreesToRad) + Mathf.Atan(yDiff / xDiff);
-                        break;
-                    case 4:
-                        polarAngle = (360 * degreesToRad) + Mathf.Atan(yDiff / xDiff);
-                        break;
-                    default:
-                        if (xDiff == 0)
-                        {
-                            if (yDiff > 0)
-                            {
-                                polarAngle = 90 * degreesToRad;
-                            }
-                            else if (yDiff < 0)
-                            {
-                                polarAngle = 270 * degreesToRad;
-                            }
-                            else
-                            {
-                                //Target is at object's current location
-                                polarAngle = -1;
-                            }
-                        }
-                        else if (yDiff == 0)
-                        {
-                            if (xDiff > 0)
-                            {
-                                polarAngle = 0;
-                            }
-                            else
-                            {
-                                polarAngle = 180 * degreesToRad;
-                            }
-                        }
-                        break;
-                }
+                polarAngle = GetPolarAngle(xDiff, yDiff, false);
                 if (polarAngle != -1)
                 {
                     float xMovement = speed * Mathf.Cos(polarAngle) * Time.deltaTime;
                     float yMovement = speed * Mathf.Sin(polarAngle) * Time.deltaTime;
-                    transform.Translate(xMovement, yMovement, 0);
+                    transform.Translate(xMovement, yMovement, 0, Space.World);
                 }
             }
             else
@@ -268,56 +342,9 @@ public class Minion : MonoBehaviour {
                 yDiff = GetY() - circleCentre.y;
                 float radius = Mathf.Sqrt(Mathf.Pow(xDiff, 2) + Mathf.Pow(yDiff, 2));
 
-                //Calculate current polar angle
-                switch (GetQuadrant(xDiff, yDiff))
-                {
-                    case 1:
-                        polarAngle = Mathf.Atan(yDiff / xDiff);
-                        break;
-                    case 2:
-                        polarAngle = (180 * degreesToRad) + Mathf.Atan(yDiff / xDiff);
-                        break;
-                    case 3:
-                        polarAngle = (180 * degreesToRad) + Mathf.Atan(yDiff / xDiff);
-                        break;
-                    case 4:
-                        polarAngle = (360 * degreesToRad) + Mathf.Atan(yDiff / xDiff);
-                        break;
-                    default:
-                        if (xDiff == 0)
-                        {
-                            if (yDiff > 0)
-                            {
-                                polarAngle = 90 * degreesToRad;
-                            }
-                            else if (yDiff < 0)
-                            {
-                                polarAngle = 270 * degreesToRad;
-                            }
-                            else
-                            {
-                                //Target is at object's current location
-                                polarAngle = -1;
-                            }
-                        }
-                        else if (yDiff == 0)
-                        {
-                            if (xDiff > 0)
-                            {
-                                polarAngle = 0;
-                            }
-                            else
-                            {
-                                polarAngle = 180 * degreesToRad;
-                            }
-                        }
-                        break;
-                }
+                //Calculate current polar angle relative to circle centre
+                polarAngle = GetPolarAngle(xDiff, yDiff, false);
                 //Add change in polar angle moving along circular path
-                //James just making a bugfix here to get the game running
-                //You can't modify the components of a transform position directly it seems instead
-                //you have to copy it to a temp Vector2, make your changes and then copy it back in.
-                //I've modified the code here which should work, we'll discuss it further at tommorows meeting :P
                 Vector3 temp;
                 temp = transform.position;
 
@@ -336,6 +363,7 @@ public class Minion : MonoBehaviour {
                 transform.position = temp;
             }
         }
+        UpdateRotation(GetX() - previousX, GetY() - previousY);
     }
 
     public Vector3 GetPosition()
@@ -357,4 +385,19 @@ public class Minion : MonoBehaviour {
     {
         return transform.position.z;
     }
+
+    void OnGUI()
+    {
+        GUI.skin = skin;
+        skin.label.alignment = TextAnchor.MiddleCenter;
+        Vector3 screenPosition = new Vector3();
+
+        if(transform.position != null)
+            screenPosition = Camera.main.WorldToScreenPoint(transform.position);// gets screen position.
+
+        screenPosition.y = Screen.height - (screenPosition.y + 1);// inverts y
+
+        GUI.Label(new Rect(screenPosition.x - 50, screenPosition.y - 25, 100, 24), "HP: " + hP);
+    }
+
 }

@@ -135,6 +135,7 @@ GameObject:
   - 131: {fileID: 686627394}
   - 114: {fileID: 686627393}
   - 82: {fileID: 686627396}
+  - 114: {fileID: 686627397}
   m_Layer: 0
   m_Name: HowToPlayButton
   m_TagString: Untagged
@@ -170,8 +171,8 @@ GUITexture:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 280
-    height: 30
+    width: 0
+    height: 0
   m_LeftBorder: 0
   m_RightBorder: 0
   m_TopBorder: 0
@@ -183,8 +184,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 686627392}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .746590376, y: .239877805, z: 0}
-  m_LocalScale: {x: .0500000007, y: .0500000007, z: .0500000007}
+  m_LocalPosition: {x: .879999995, y: .25999999, z: 0}
+  m_LocalScale: {x: .230000004, y: .100000001, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
@@ -246,6 +247,18 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+--- !u!114 &686627397
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 686627392}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92fd95eddeb99d1438c4546bbde57e1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scaleOnRatio1: {x: .200000003, y: .0500000007}
 --- !u!1 &724101082
 GameObject:
   m_ObjectHideFlags: 0
@@ -307,6 +320,7 @@ GameObject:
   - 131: {fileID: 868221058}
   - 114: {fileID: 868221057}
   - 82: {fileID: 868221060}
+  - 114: {fileID: 868221061}
   m_Layer: 0
   m_Name: ExitButton
   m_TagString: Untagged
@@ -342,8 +356,8 @@ GUITexture:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 130
-    height: 29
+    width: 0
+    height: 0
   m_LeftBorder: 0
   m_RightBorder: 0
   m_TopBorder: 0
@@ -355,8 +369,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 868221056}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .7899037, y: .110962868, z: 0}
-  m_LocalScale: {x: .0500000007, y: .0500000007, z: .0500000007}
+  m_LocalPosition: {x: .879999995, y: .1259, z: 0}
+  m_LocalScale: {x: .0900000036, y: .0599999987, z: .0500000007}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
@@ -418,6 +432,18 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+--- !u!114 &868221061
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 868221056}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92fd95eddeb99d1438c4546bbde57e1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scaleOnRatio1: {x: .0799999982, y: .0399999991}
 --- !u!1 &1488654118
 GameObject:
   m_ObjectHideFlags: 0
@@ -513,6 +539,7 @@ GameObject:
   - 131: {fileID: 1512122428}
   - 114: {fileID: 1512122427}
   - 82: {fileID: 1512122430}
+  - 114: {fileID: 1512122431}
   m_Layer: 0
   m_Name: PlayButton
   m_TagString: Untagged
@@ -548,8 +575,8 @@ GUITexture:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 230
-    height: 75
+    width: 0
+    height: 0
   m_LeftBorder: 0
   m_RightBorder: 0
   m_TopBorder: 0
@@ -561,8 +588,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1512122426}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .764946997, y: .356327593, z: 0}
-  m_LocalScale: {x: .0021980484, y: .0021980484, z: .0021980484}
+  m_LocalPosition: {x: .879999995, y: .395000011, z: 0}
+  m_LocalScale: {x: .100000001, y: .0500000007, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
@@ -624,6 +651,18 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+--- !u!114 &1512122431
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1512122426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92fd95eddeb99d1438c4546bbde57e1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scaleOnRatio1: {x: .0799999982, y: .0399999991}
 --- !u!1 &1736765262
 GameObject:
   m_ObjectHideFlags: 0
